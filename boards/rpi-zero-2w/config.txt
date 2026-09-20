@@ -1,0 +1,6 @@
+# Raspberry Pi Zero 2W (BCM2837) - µOS++ AArch64 (64-bit) boot config.
+arm_64bit=1
+kernel=kernel8.img
+enable_uart=1
+core_freq=250
+gpu_mem=16
