@@ -1,0 +1,2512 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.kilo/bin/uname"
+      - "/home/dan/.kimi-code/bin/uname"
+      - "/home/dan/.local/bin/uname"
+      - "/home/dan/.opencode/bin/uname"
+      - "/home/dan/Documents/zig/uname"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/uname"
+      - "/home/dan/.cargo/bin/uname"
+      - "/home/dan/.bun/bin/uname"
+      - "/usr/local/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:213 (message)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      The target system is: Generic -  - aarch64
+      The host system is: Linux - 7.2.6-arch2-1 - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.kilo/bin/gmake"
+      - "/home/dan/.kimi-code/bin/gmake"
+      - "/home/dan/.local/bin/gmake"
+      - "/home/dan/.opencode/bin/gmake"
+      - "/home/dan/Documents/zig/gmake"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/gmake"
+      - "/home/dan/.cargo/bin/gmake"
+      - "/home/dan/.bun/bin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/usr/bin/gmake"
+      - "/bin/gmake"
+      - "/usr/local/sbin/gmake"
+      - "/opt/cuda/bin/gmake"
+      - "/usr/lib/jvm/default/bin/gmake"
+      - "/usr/bin/site_perl/gmake"
+      - "/usr/bin/vendor_perl/gmake"
+      - "/usr/bin/core_perl/gmake"
+      - "/home/dan/.lmstudio/bin/gmake"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/gmake"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/gmake"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/gmake"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/gmake"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/gmake"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/gmake"
+      - "/home/dan/.kilo/bin/make"
+      - "/home/dan/.kimi-code/bin/make"
+      - "/home/dan/.local/bin/make"
+      - "/home/dan/.opencode/bin/make"
+      - "/home/dan/Documents/zig/make"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/make"
+      - "/home/dan/.cargo/bin/make"
+      - "/home/dan/.bun/bin/make"
+      - "/usr/local/bin/make"
+    found: "/usr/bin/make"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:501 (find_file)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:538 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "/usr/share/cmake/Modules/"
+    found: "/usr/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-exit.o): in function `exit':
+      (.text.exit+0x2c): undefined reference to `_exit'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-closer.o): in function `_close_r':
+      (.text._close_r+0x1c): undefined reference to `_close'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      (.text._lseek_r+0x24): undefined reference to `_lseek'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-readr.o): in function `_read_r':
+      (.text._read_r+0x24): undefined reference to `_read'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-writer.o): in function `_write_r':
+      (.text._write_r+0x24): undefined reference to `_write'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
+      (.text._sbrk_r+0x1c): undefined reference to `_sbrk'
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:501 (find_file)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:538 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "/usr/share/cmake/Modules/"
+    found: "/usr/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/4.4.3/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-ar"
+      - "ar"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ar"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-ranlib"
+      - "ranlib"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-strip"
+      - "strip"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-strip"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-ld"
+      - "ld"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ld"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-nm"
+      - "nm"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-nm"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-readelf"
+      - "readelf"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-readelf"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-dlltool"
+      - "dlltool"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.local/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/Documents/zig/aarch64-none-elf-dlltool"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.bun/bin/aarch64-none-elf-dlltool"
+      - "/usr/local/bin/aarch64-none-elf-dlltool"
+      - "/usr/bin/aarch64-none-elf-dlltool"
+      - "/bin/aarch64-none-elf-dlltool"
+      - "/usr/local/sbin/aarch64-none-elf-dlltool"
+      - "/opt/cuda/bin/aarch64-none-elf-dlltool"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-dlltool"
+      - "/usr/bin/site_perl/aarch64-none-elf-dlltool"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-dlltool"
+      - "/usr/bin/core_perl/aarch64-none-elf-dlltool"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-dlltool"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/dlltool"
+      - "/home/dan/.kilo/bin/dlltool"
+      - "/home/dan/.kimi-code/bin/dlltool"
+      - "/home/dan/.local/bin/dlltool"
+      - "/home/dan/.opencode/bin/dlltool"
+      - "/home/dan/Documents/zig/dlltool"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/dlltool"
+      - "/home/dan/.cargo/bin/dlltool"
+      - "/home/dan/.bun/bin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/usr/bin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/local/sbin/dlltool"
+      - "/opt/cuda/bin/dlltool"
+      - "/usr/lib/jvm/default/bin/dlltool"
+      - "/usr/bin/site_perl/dlltool"
+      - "/usr/bin/vendor_perl/dlltool"
+      - "/usr/bin/core_perl/dlltool"
+      - "/home/dan/.lmstudio/bin/dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/dlltool"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/dlltool"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-addr2line"
+      - "addr2line"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-addr2line"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeFindBinUtils.cmake:247 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-tapi"
+      - "tapi"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.local/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-tapi"
+      - "/home/dan/Documents/zig/aarch64-none-elf-tapi"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.bun/bin/aarch64-none-elf-tapi"
+      - "/usr/local/bin/aarch64-none-elf-tapi"
+      - "/usr/bin/aarch64-none-elf-tapi"
+      - "/bin/aarch64-none-elf-tapi"
+      - "/usr/local/sbin/aarch64-none-elf-tapi"
+      - "/opt/cuda/bin/aarch64-none-elf-tapi"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-tapi"
+      - "/usr/bin/site_perl/aarch64-none-elf-tapi"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-tapi"
+      - "/usr/bin/core_perl/aarch64-none-elf-tapi"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-tapi"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/tapi"
+      - "/home/dan/.kilo/bin/tapi"
+      - "/home/dan/.kimi-code/bin/tapi"
+      - "/home/dan/.local/bin/tapi"
+      - "/home/dan/.opencode/bin/tapi"
+      - "/home/dan/Documents/zig/tapi"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/tapi"
+      - "/home/dan/.cargo/bin/tapi"
+      - "/home/dan/.bun/bin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/usr/bin/tapi"
+      - "/bin/tapi"
+      - "/usr/local/sbin/tapi"
+      - "/opt/cuda/bin/tapi"
+      - "/usr/lib/jvm/default/bin/tapi"
+      - "/usr/bin/site_perl/tapi"
+      - "/usr/bin/vendor_perl/tapi"
+      - "/usr/bin/core_perl/tapi"
+      - "/home/dan/.lmstudio/bin/tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/tapi"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/tapi"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-gcc-ar-15.2"
+      - "aarch64-none-elf-gcc-ar-15"
+      - "aarch64-none-elf-gcc-ar15"
+      - "aarch64-none-elf-gcc-ar"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15.2"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/aarch64-none-elf-gcc-ar-15"
+      - "/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/aarch64-none-elf-gcc-ar15"
+      - "/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar15"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-gcc-ranlib-15.2"
+      - "aarch64-none-elf-gcc-ranlib-15"
+      - "aarch64-none-elf-gcc-ranlib15"
+      - "aarch64-none-elf-gcc-ranlib"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib15"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:501 (find_file)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:538 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/usr/share/cmake/Modules/"
+    found: "/usr/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-exit.o): in function `exit':
+      (.text.exit+0x2c): undefined reference to `_exit'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-closer.o): in function `_close_r':
+      (.text._close_r+0x1c): undefined reference to `_close'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      (.text._lseek_r+0x24): undefined reference to `_lseek'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-readr.o): in function `_read_r':
+      (.text._read_r+0x24): undefined reference to `_read'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-writer.o): in function `_write_r':
+      (.text._write_r+0x24): undefined reference to `_write'
+      /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/ld: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
+      (.text._sbrk_r+0x1c): undefined reference to `_sbrk'
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:501 (find_file)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:538 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/usr/share/cmake/Modules/"
+    found: "/usr/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/4.4.3/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-gcc-ar-15.2"
+      - "aarch64-none-elf-gcc-ar-15"
+      - "aarch64-none-elf-gcc-ar15"
+      - "aarch64-none-elf-gcc-ar"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15.2"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar-15.2"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar-15.2"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/aarch64-none-elf-gcc-ar-15"
+      - "/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar-15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar-15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar-15"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/aarch64-none-elf-gcc-ar15"
+      - "/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar15"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-gcc-ranlib-15.2"
+      - "aarch64-none-elf-gcc-ranlib-15"
+      - "aarch64-none-elf-gcc-ranlib15"
+      - "aarch64-none-elf-gcc-ranlib"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib-15.2"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib-15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib-15"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib15"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib15"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib15"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib15"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:1328 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:174 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      aarch64-none-elf-gcc (xPack GNU AArch64 Embedded GCC x86_64) 15.2.1 20251203
+      Copyright (C) 2025 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:271 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_ASM_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-gcc-ar-"
+      - "aarch64-none-elf-gcc-ar-"
+      - "aarch64-none-elf-gcc-ar"
+      - "aarch64-none-elf-gcc-ar"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/aarch64-none-elf-gcc-ar-"
+      - "/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar-"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/aarch64-none-elf-gcc-ar-"
+      - "/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ar-"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ar-"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ar-"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ar-"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ar"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "/usr/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:271 (include)"
+      - "CMakeLists.txt:25 (project)"
+    mode: "program"
+    variable: "CMAKE_ASM_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "aarch64-none-elf-gcc-ranlib-"
+      - "aarch64-none-elf-gcc-ranlib-"
+      - "aarch64-none-elf-gcc-ranlib"
+      - "aarch64-none-elf-gcc-ranlib"
+    candidate_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/"
+      - "/home/dan/.kilo/bin/"
+      - "/home/dan/.kimi-code/bin/"
+      - "/home/dan/.local/bin/"
+      - "/home/dan/.opencode/bin/"
+      - "/home/dan/Documents/zig/"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/"
+      - "/home/dan/.cargo/bin/"
+      - "/home/dan/.bun/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/local/sbin/"
+      - "/opt/cuda/bin/"
+      - "/usr/lib/jvm/default/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
+      - "/home/dan/.lmstudio/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/"
+    searched_directories:
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.kilo/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.kimi-code/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.local/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.opencode/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/Documents/zig/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.config/nvm/versions/node/v25.8.2/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.cargo/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.bun/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/local/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/local/sbin/aarch64-none-elf-gcc-ranlib-"
+      - "/opt/cuda/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/lib/jvm/default/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/site_perl/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/vendor_perl/aarch64-none-elf-gcc-ranlib-"
+      - "/usr/bin/core_perl/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.lmstudio/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin/aarch64-none-elf-gcc-ranlib-"
+      - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin/aarch64-none-elf-gcc-ranlib-"
+    found: "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc-ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/home/dan/.kilo/bin"
+        - "/home/dan/.kimi-code/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.opencode/bin"
+        - "/home/dan/Documents/zig/"
+        - "/home/dan/.config/nvm/versions/node/v25.8.2/bin"
+        - "/home/dan/.cargo/bin"
+        - "/home/dan/.local/bin"
+        - "/home/dan/.bun/bin"
+        - "/home/dan/.local/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/opt/cuda/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.lmstudio/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/context7/c447c3207a42/bin"
+        - "/home/dan/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0/bin"
+        - "/home/dan/.claude/plugins/cache/thedotmack/claude-mem/13.25.2/bin"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:123 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:25 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc"
+      binary: "/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc"
+    cmakeVariables:
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: false
+      stdout: |
+        Change Dir: '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ac636/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_ac636.dir/build.make CMakeFiles/cmTC_ac636.dir/build
+        make[1]: Entering directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc'
+        Building C object CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj
+        /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc   -v -o CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc
+        Target: aarch64-none-elf
+        Configured with: /home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/sources/gcc/configure --prefix=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application --with-sysroot=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application/aarch64-none-elf --with-native-system-header-dir=/include --infodir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/info --mandir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/man --htmldir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/html --pdfdir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/pdf --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=aarch64-none-elf --disable-nls --disable-shared --disable-threads --disable-tls --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install --with-newlib --with-pkgversion='xPack GNU AArch64 Embedded GCC x86_64' --with-gnu-as --with-gnu-ld --with-system-zlib --disable-libatomic --with-headers=yes
+        Thread model: single
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.2.1 20251203 (xPack GNU AArch64 Embedded GCC x86_64) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ac636.dir/'
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/cc1 -quiet -v -iprefix /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/ -isysroot /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ac636.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -o /tmp/ccdkUWo0.s
+        GNU C23 (xPack GNU AArch64 Embedded GCC x86_64) version 15.2.1 20251203 (aarch64-none-elf)
+        	compiled by GNU C version 15.2.0, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include"
+        ignoring nonexistent directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/usr/local/include"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include-fixed"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include
+        End of search list.
+        Compiler executable checksum: 791b528a128a4e076f17f52a93b92471
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ac636.dir/'
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj /tmp/ccdkUWo0.s
+        GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (xPack GNU AArch64 Embedded GCC x86_64) 2.45.1.20251203
+        COMPILER_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/
+        LIBRARY_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.'
+        Linking C static library libcmTC_ac636.a
+        /usr/bin/cmake -P CMakeFiles/cmTC_ac636.dir/cmake_clean_target.cmake
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ac636.dir/link.txt --verbose=1
+        /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ar qc libcmTC_ac636.a CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj
+        /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ranlib libcmTC_ac636.a
+        make[1]: Leaving directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:255 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include]
+        end of search list found
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include-fixed]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include]
+        implicit include dirs: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include-fixed;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:291 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild))("|,| |$)]
+        ignore line: [Change Dir: '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ac636/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_ac636.dir/build.make CMakeFiles/cmTC_ac636.dir/build]
+        ignore line: [make[1]: Entering directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc']
+        ignore line: [Building C object CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc   -v -o CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-gcc]
+        ignore line: [Target: aarch64-none-elf]
+        ignore line: [Configured with: /home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/sources/gcc/configure --prefix=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application --with-sysroot=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application/aarch64-none-elf --with-native-system-header-dir=/include --infodir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/info --mandir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/man --htmldir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/html --pdfdir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/pdf --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=aarch64-none-elf --disable-nls --disable-shared --disable-threads --disable-tls --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install --with-newlib --with-pkgversion='xPack GNU AArch64 Embedded GCC x86_64' --with-gnu-as --with-gnu-ld --with-system-zlib --disable-libatomic --with-headers=yes]
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.2.1 20251203 (xPack GNU AArch64 Embedded GCC x86_64) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ac636.dir/']
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/cc1 -quiet -v -iprefix /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/ -isysroot /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_ac636.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -o /tmp/ccdkUWo0.s]
+        ignore line: [GNU C23 (xPack GNU AArch64 Embedded GCC x86_64) version 15.2.1 20251203 (aarch64-none-elf)]
+        ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include"]
+        ignore line: [ignoring nonexistent directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/usr/local/include"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include-fixed"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 791b528a128a4e076f17f52a93b92471]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ac636.dir/']
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj /tmp/ccdkUWo0.s]
+        ignore line: [GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (xPack GNU AArch64 Embedded GCC x86_64) 2.45.1.20251203]
+        ignore line: [COMPILER_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/]
+        ignore line: [LIBRARY_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C static library libcmTC_ac636.a]
+        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_ac636.dir/cmake_clean_target.cmake]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ac636.dir/link.txt --verbose=1]
+        ignore line: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ar qc libcmTC_ac636.a CMakeFiles/cmTC_ac636.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ranlib libcmTC_ac636.a]
+        ignore line: [make[1]: Leaving directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-4cNfuc']
+        ignore line: []
+        ignore line: []
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:123 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:25 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS"
+      binary: "/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: false
+      stdout: |
+        Change Dir: '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ded48/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_ded48.dir/build.make CMakeFiles/cmTC_ded48.dir/build
+        make[1]: Entering directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS'
+        Building CXX object CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj
+        /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-g++   -v -o CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-g++
+        Target: aarch64-none-elf
+        Configured with: /home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/sources/gcc/configure --prefix=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application --with-sysroot=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application/aarch64-none-elf --with-native-system-header-dir=/include --infodir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/info --mandir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/man --htmldir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/html --pdfdir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/pdf --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=aarch64-none-elf --disable-nls --disable-shared --disable-threads --disable-tls --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install --with-newlib --with-pkgversion='xPack GNU AArch64 Embedded GCC x86_64' --with-gnu-as --with-gnu-ld --with-system-zlib --disable-libatomic --with-headers=yes
+        Thread model: single
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.2.1 20251203 (xPack GNU AArch64 Embedded GCC x86_64) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ded48.dir/'
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/cc1plus -quiet -v -iprefix /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/ -isysroot /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ded48.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -o /tmp/cciiqvhR.s
+        GNU C++17 (xPack GNU AArch64 Embedded GCC x86_64) version 15.2.1 20251203 (aarch64-none-elf)
+        	compiled by GNU C version 15.2.0, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/backward"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include"
+        ignoring nonexistent directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/usr/local/include"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include-fixed"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include"
+        ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/backward
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include
+        End of search list.
+        Compiler executable checksum: b1f832432c2c1c47655304455f8fcd98
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ded48.dir/'
+         /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj /tmp/cciiqvhR.s
+        GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (xPack GNU AArch64 Embedded GCC x86_64) 2.45.1.20251203
+        COMPILER_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/
+        LIBRARY_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX static library libcmTC_ded48.a
+        /usr/bin/cmake -P CMakeFiles/cmTC_ded48.dir/cmake_clean_target.cmake
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ded48.dir/link.txt --verbose=1
+        /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ar qc libcmTC_ded48.a CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj
+        /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ranlib libcmTC_ded48.a
+        make[1]: Leaving directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:255 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/backward]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed]
+          add: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include]
+        end of search list found
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include/c++/15.2.1]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/backward] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include/c++/15.2.1/backward]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include-fixed]
+        collapse include dir [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include] ==> [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include]
+        implicit include dirs: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include/c++/15.2.1;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include/c++/15.2.1/backward;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/lib/gcc/aarch64-none-elf/15.2.1/include-fixed;/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/aarch64-none-elf/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:291 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:25 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild))("|,| |$)]
+        ignore line: [Change Dir: '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ded48/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_ded48.dir/build.make CMakeFiles/cmTC_ded48.dir/build]
+        ignore line: [make[1]: Entering directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS']
+        ignore line: [Building CXX object CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-g++   -v -o CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-g++]
+        ignore line: [Target: aarch64-none-elf]
+        ignore line: [Configured with: /home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/sources/gcc/configure --prefix=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application --with-sysroot=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/application/aarch64-none-elf --with-native-system-header-dir=/include --infodir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/info --mandir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/man --htmldir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/html --pdfdir=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install/share/pdf --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=aarch64-none-elf --disable-nls --disable-shared --disable-threads --disable-tls --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/home/ilg/actions-runners/xpack-dev-tools/1/_work/aarch64-none-elf-gcc-xpack/aarch64-none-elf-gcc-xpack/build-assets/build/linux-x64/x86_64-pc-linux-gnu/install --with-newlib --with-pkgversion='xPack GNU AArch64 Embedded GCC x86_64' --with-gnu-as --with-gnu-ld --with-system-zlib --disable-libatomic --with-headers=yes]
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.2.1 20251203 (xPack GNU AArch64 Embedded GCC x86_64) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ded48.dir/']
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/cc1plus -quiet -v -iprefix /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/ -isysroot /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ded48.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -o /tmp/cciiqvhR.s]
+        ignore line: [GNU C++17 (xPack GNU AArch64 Embedded GCC x86_64) version 15.2.1 20251203 (aarch64-none-elf)]
+        ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/backward"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include"]
+        ignore line: [ignoring nonexistent directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/usr/local/include"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/include-fixed"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include"]
+        ignore line: [ignoring duplicate directory "/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/aarch64-none-elf]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include/c++/15.2.1/backward]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/include-fixed]
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: b1f832432c2c1c47655304455f8fcd98]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ded48.dir/']
+        ignore line: [ /home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj /tmp/cciiqvhR.s]
+        ignore line: [GNU assembler version 2.45.1 (aarch64-none-elf) using BFD version (xPack GNU AArch64 Embedded GCC x86_64) 2.45.1.20251203]
+        ignore line: [COMPILER_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../libexec/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/bin/]
+        ignore line: [LIBRARY_PATH=/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../lib/gcc/aarch64-none-elf/15.2.1/../../../../aarch64-none-elf/lib/:/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/../aarch64-none-elf/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX static library libcmTC_ded48.a]
+        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_ded48.dir/cmake_clean_target.cmake]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ded48.dir/link.txt --verbose=1]
+        ignore line: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ar qc libcmTC_ded48.a CMakeFiles/cmTC_ded48.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/home/dan/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.2.1-1.1.1/.content/bin/aarch64-none-elf-ranlib libcmTC_ded48.a]
+        ignore line: [make[1]: Leaving directory '/home/dan/Downloads/luckfox_lyra/TMP7/micro-os-plus-iii-aarch64/build15/CMakeFiles/CMakeScratch/TryCompile-FDRsBS']
+        ignore line: []
+        ignore line: []
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+...

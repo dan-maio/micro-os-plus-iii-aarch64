@@ -5,8 +5,15 @@
 # neither of them knows this project exists, so the dependency runs one way
 # and the kernel tree stays merge-clean against upstream.
 #
-#   external/micro-os-plus-iii-smp      the kernel and the shared tests
-#   external/micro-os-plus-iii-devices  SD, flatfs, DWC2, FatFs, BCM2837 SoC
+# It holds no copy of them. Clone the two repositories beside this one:
+#
+#   git clone .../micro-os-plus-iii-smp.git
+#   git clone .../micro-os-plus-iii-devices.git
+#   git clone .../micro-os-plus-iii-ARCH.git
+#
+# and they are found automatically as siblings. One working copy of the
+# kernel serves every architecture project on the machine, so an edit to it
+# is visible to all of them at once -- which is the point.
 #
 # Boards are build configurations of this one port, not separate ports:
 # Pi Zero 2 W and Pi 3 B differ by a linker script and a banner macro.
@@ -20,18 +27,26 @@ project (micro-os-plus-iii-aarch64 LANGUAGES C CXX ASM)
 set (UOS_AARCH64_ROOT "${CMAKE_CURRENT_SOURCE_DIR}" CACHE INTERNAL "")
 
 # -----------------------------------------------------------------------------
-# Dependencies. Submodules by default; point the cache variables elsewhere to
-# build against a working copy.
-set (UOS_SMP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/micro-os-plus-iii-smp"
-     CACHE PATH "µOS++ III SMP kernel")
-set (UOS_DEVICES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/micro-os-plus-iii-devices"
-     CACHE PATH "µOS++ III device drivers")
+# Dependencies: sibling clones by default. Override either with -D to build
+# against a working copy somewhere else.
+get_filename_component (_uos_siblings "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 
-foreach (_dep IN ITEMS "${UOS_SMP_DIR}" "${UOS_DEVICES_DIR}")
-  if (NOT EXISTS "${_dep}/CMakeLists.txt")
+set (UOS_SMP_DIR "${_uos_siblings}/micro-os-plus-iii-smp"
+     CACHE PATH "µOS++ III SMP kernel working copy")
+set (UOS_DEVICES_DIR "${_uos_siblings}/micro-os-plus-iii-devices"
+     CACHE PATH "µOS++ III devices working copy")
+
+foreach (_dep_var IN ITEMS UOS_SMP_DIR UOS_DEVICES_DIR)
+  if (NOT EXISTS "${${_dep_var}}/CMakeLists.txt")
+    string (REPLACE "UOS_" "" _repo "${_dep_var}")
+    string (REPLACE "_DIR" "" _repo "${_repo}")
+    string (TOLOWER "${_repo}" _repo)
     message (FATAL_ERROR
-      "Missing dependency at ${_dep}.\n"
-      "Run: git submodule update --init --recursive")
+      "Cannot find the ${_repo} repository at ${${_dep_var}}.\n"
+      "This project keeps no copy of it. Clone it beside this one:\n"
+      "    git clone <remote>/micro-os-plus-iii-${_repo}.git\n"
+      "or point at an existing working copy:\n"
+      "    cmake -D${_dep_var}=/path/to/it ...")
   endif ()
 endforeach ()
 
@@ -71,6 +86,13 @@ target_compile_options (
   # Only the silicon. The flags every bare-metal application shares
   # (-O2, -ffunction-sections, -fno-exceptions, -nostartfiles, ...) are
   # set once by uos_add_app.
+  INTERFACE -mcpu=cortex-a53
+)
+
+# The same machine flags at link time: the driver has to pick the matching
+# multilib, or the link fails on the float ABI.
+target_link_options (
+  micro-os-plus-iii-aarch64-interface
   INTERFACE -mcpu=cortex-a53
 )
 
