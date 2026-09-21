@@ -56,7 +56,7 @@ add_subdirectory ("${UOS_DEVICES_DIR}" micro-os-plus-iii-devices)
 # -----------------------------------------------------------------------------
 # Boards.
 #
-# Boards are DISCOVERED, not listed. Every directory under boards/ that holds
+# Boards are DISCOVERED, not listed. Every directory under test/boards/ that holds
 # a board.cmake is a board, and that file is the only place its facts are
 # written: sources, CPU flags, core count, capabilities, linker scripts,
 # libraries and defines. Nothing here knows any board's name.
@@ -68,7 +68,7 @@ add_subdirectory ("${UOS_DEVICES_DIR}" micro-os-plus-iii-devices)
 # error in src/board-contract.cpp, not a silent inheritance of another board's
 # answer.
 # -----------------------------------------------------------------------------
-file (GLOB _board_decls CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/boards/*/board.cmake")
+file (GLOB _board_decls CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/boards/*/board.cmake")
 set (_board_ids "")
 foreach (_decl IN LISTS _board_decls)
   get_filename_component (_dir "${_decl}" DIRECTORY)
@@ -84,23 +84,23 @@ if (NOT BOARD IN_LIST _board_ids)
   message (FATAL_ERROR
     "BOARD=${BOARD} is not a board of this port.\n"
     "Available: ${_board_ids}\n"
-    "A board is a directory under boards/ containing a board.cmake.")
+    "A board is a directory under test/boards/ containing a board.cmake.")
 endif ()
 
-include ("${CMAKE_CURRENT_SOURCE_DIR}/boards/${BOARD}/board.cmake")
+include ("${CMAKE_CURRENT_SOURCE_DIR}/test/boards/${BOARD}/board.cmake")
 
 foreach (_required IN ITEMS UOS_BOARD_SRC_DIR UOS_BOARD_FLAGS UOS_BOARD_NCPU
                             UOS_BOARD_CAPS UOS_BOARD_LINKER_HW
                             UOS_BOARD_LINKER_QEMU UOS_BOARD_DEFINES)
   if (NOT DEFINED ${_required})
-    message (FATAL_ERROR "boards/${BOARD}/board.cmake does not set ${_required}.")
+    message (FATAL_ERROR "test/boards/${BOARD}/board.cmake does not set ${_required}.")
   endif ()
 endforeach ()
 
 get_filename_component (UOS_BOARD_SRC_DIR "${UOS_BOARD_SRC_DIR}" ABSOLUTE)
 if (NOT IS_DIRECTORY "${UOS_BOARD_SRC_DIR}")
   message (FATAL_ERROR
-    "boards/${BOARD}/board.cmake points at ${UOS_BOARD_SRC_DIR}, which does not exist.")
+    "test/boards/${BOARD}/board.cmake points at ${UOS_BOARD_SRC_DIR}, which does not exist.")
 endif ()
 
 # Published for test/CMakeLists.txt, which is a separate directory scope.
@@ -109,7 +109,7 @@ endif ()
 foreach (_cap_lib IN ITEMS sdcard usb-device)
   if ("${_cap_lib}" IN_LIST UOS_BOARD_CAPS AND NOT DEFINED UOS_BOARD_DEVICES)
     message (FATAL_ERROR
-             "boards/${BOARD}/board.cmake declares the `${_cap_lib}` capability "
+             "test/boards/${BOARD}/board.cmake declares the `${_cap_lib}` capability "
              "but no UOS_BOARD_DEVICES to provide it.")
   endif ()
 endforeach ()
@@ -153,7 +153,7 @@ target_sources (
         # something the shared sources need. See the file's own header.
         src/board-contract.cpp
         # Per-board: startup, MMU tables, the tick, the IPI, the console, and
-        # the interrupt dispatch (boards/<board>/src/rtos/port_isr.cpp).
+        # the interrupt dispatch (test/boards/<board>/src/rtos/port_isr.cpp).
         ${_board_sources}
 )
 

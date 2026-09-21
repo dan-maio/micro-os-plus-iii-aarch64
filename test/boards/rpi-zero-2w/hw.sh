@@ -2,8 +2,8 @@
 # -----------------------------------------------------------------------------
 # hw.sh — run ONE test on this board, over OpenOCD.
 #
-#     boards/<id>/hw.sh list                 the tests this build has
-#     boards/<id>/hw.sh <app> [run-seconds]  run one
+#     test/boards/<id>/hw.sh list                 the tests this build has
+#     test/boards/<id>/hw.sh <app> [run-seconds]  run one
 #
 # The session is the shared runner (test_smpl/run-hw.sh); everything here is a
 # BCM2837-in-AArch64 fact.
@@ -14,14 +14,14 @@
 # ONE TEST PER POWER CYCLE: a load into RAM over whatever the previous test
 # left there, and the Pi has no SRST a script can drive.
 #
-# Env:  BUILD=<dir>   the CMake build directory   (default: ../../build)
+# Env:  BUILD=<dir>   the CMake build directory   (default: test/build)
 #       PROBE=jlink | olimex                      (default: jlink)
 # -----------------------------------------------------------------------------
 set -uo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="$(cd "$HERE/../.." && pwd)"
-BUILD="${BUILD:-$ROOT/build}"
+ROOT="$(cd "$HERE/../../.." && pwd)"
+BUILD="${BUILD:-$ROOT/test/build}"
 PROBE="${PROBE:-jlink}"
 
 case "$PROBE" in
