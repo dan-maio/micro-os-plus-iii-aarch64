@@ -2,7 +2,7 @@
 # hw.sh — run the AArch64 hardware tests on a Raspberry Pi Zero 2W / Pi 3 B.
 #
 # This is only the ISA half: the session itself is driven by the shared
-# runner in the kernel repository (test/run-hw.sh), which every port uses.
+# runner in the kernel repository (test_smpl/run-hw.sh), which every port uses.
 # Everything AArch64-specific is here, and it is four facts:
 #
 #   * aarch64-none-elf binutils read the ELF;
@@ -48,4 +48,4 @@ UOS_HW_ENTRY=0x80000 \
 UOS_HW_SPIN_WORDS=8 \
 UOS_HW_RESUME=pc \
 UOS_HW_NCPU=4 \
-exec "$SMP_DIR/test/run-hw.sh" "$BUILD/test" "${1:-list}" "${2:-}"
+exec "$SMP_DIR/test_smpl/run-hw.sh" "$BUILD/test" "${1:-list}" "${2:-}"
