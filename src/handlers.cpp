@@ -9,6 +9,10 @@
 #include <cstdint>
 #include <uart.hpp>
 
+#if defined(SEMIHOST)
+#include <semihosting.hpp>
+#endif
+
 // The aarch64-none-elf newlib (unlike arm-none-eabi's default specs) does not
 // bundle these; provide them for the bare-metal link. µOS++ supplies its own
 // _sbrk (heap), so we deliberately do NOT define _sbrk here.
@@ -24,11 +28,27 @@ int  _isatty(int)                 { return 1; }
 int  _kill  (int, int)            { return -1; }
 int  _getpid(void)                { return 1; }
 
-void _exit (int)
+// Strong exit: terminate through the port's AArch64 semihosting SYS_EXIT
+// (HLT #0xF000, x1 -> { reason, status }), so std::exit() -- i.e. returning
+// from os_main() -- ends the run with a real exit code (0 on success under
+// QEMU) instead of idling. The kernel's _Exit() is weak; this replaces it.
+static void
+port_exit (int code)
 {
+#if defined(SEMIHOST)
+    if (code == 0)
+        semihosting::exit_success ();
+    else
+        semihosting::exit_failure ();
+#else
+    (void)code;
+#endif
     __asm__ volatile("msr daifset, #0xf" ::: "memory");
     for (;;) __asm__ volatile("wfi");
 }
+
+void _exit (int code) { port_exit (code); }
+void _Exit (int code) { port_exit (code); }
 
 int _write (int, const char* buf, int len)
 {
