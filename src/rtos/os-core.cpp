@@ -1,4 +1,10 @@
 /*
+ * os-core.cpp - the port's half of the µOS++ III SMP scheduler, AArch64.
+ *
+ * Shared by every board this port builds for. The interrupt-controller half
+ * -- which interrupt fired, how it is acknowledged -- lives in
+ * boards/<board>/src/rtos/port_isr.cpp.
+ *
  * This file is part of the µOS++ project (https://micro-os-plus.github.io/).
  * Copyright (c) Liviu Ionescu. All rights reserved.
  * Copyright (c) 2026 Dan. All rights reserved.
@@ -13,8 +19,8 @@
 #include <cassert>
 #include <cmsis-plus/rtos/os.h>
 #include <cmsis-plus/rtos/os-c-decls.h>
+#include <port_ctx.hpp>
 #include <timer_arm.hpp>
-#include <bcm_irq.hpp>
 #include <uart.hpp>
 
 extern "C" void port_sys_init(void);
@@ -51,22 +57,6 @@ static_assert(sizeof(os_thread_t) == sizeof(os::rtos::thread),
 
 /* AArch64 context frame (800 bytes) — matches SAVE_FRAME/RESTORE_FRAME in
  * startup.S. Offsets: x[]=0, spsr=248, elr=256, fpsr=264, fpcr=272, q[]=288. */
-struct ctx64
-{
-  uint64_t x[31];   /* x0 .. x30 */
-  uint64_t spsr;    /* SPSR_EL1  */
-  uint64_t elr;     /* ELR_EL1 (entry PC) */
-  uint64_t fpsr;
-  uint64_t fpcr;
-  uint64_t pad;
-  uint64_t q[64];   /* q0 .. q31, two 64-bit halves each */
-};
-static_assert(sizeof(ctx64) == 800, "ctx64 must match the 800-byte asm frame");
-
-/* Offset of SPSR within the frame, in element_t (uint64_t) units. */
-static constexpr unsigned SPSR_IDX = 248 / sizeof(uint64_t);   /* = 31 */
-static constexpr unsigned MODE_EL1H = 0x5;                     /* SPSR M[4:0] */
-
 namespace os
 {
   namespace rtos
@@ -363,83 +353,11 @@ extern "C" void* port_switch_stacks(void* sp)
       static_cast<os::rtos::port::stack::element_t*>(sp));
 }
 
-static void validate_context(uint64_t *new_sp, uint64_t *old_sp)
-{
-  if (new_sp < (uint64_t*)0x00080000 || new_sp >= (uint64_t*)0x20000000)
-    {
-      __asm__ volatile("msr daifset, #0xf" ::: "memory");
-      uart::uart1 << "\n!!! CORRUPT STACK POINTER !!!\n";
-      (void)old_sp;
-      while (1) __asm__ volatile("wfi");
-    }
-
-  uint64_t spsr = new_sp[SPSR_IDX];
-  if ((spsr & 0x1FU) == MODE_EL1H)
-    return;
-
-  __asm__ volatile("msr daifset, #0xf" ::: "memory");
-  uart::uart1 << "\n!!! CORRUPT CONTEXT FRAME (bad SPSR) !!!\n";
-  while (1) __asm__ volatile("wfi");
-}
-
+// validate_context(), port_external_irq_handler() and port_isr_handler() are
+// the only parts of this file that depend on the interrupt controller, so
+// they live per board in boards/<board>/src/rtos/port_isr.cpp. Everything
+// above and below is the same on every ARMv8-A board this port runs on.
 extern "C" void os_systick_handler (void);
-
-extern "C" [[gnu::weak]] void port_external_irq_handler(uint32_t source)
-{
-    (void)source;
-}
-
-extern "C" uint64_t * port_isr_handler(uint64_t *current_sp)
-{
-  unsigned cpu = port_cpu_id();
-  _in_isr[cpu] = true;
-
-  uint32_t source = bcm_irq::source(cpu);
-
-  if (source & bcm::local::SRC_CNTPNSIRQ)
-    {
-      uint32_t freq = timer_arm::get_freq();
-      timer_arm::set_tval(freq / 1000);
-
-      _port_core_alive[cpu] = 1;
-
-      if (cpu == 0)
-        {
-          os_systick_handler();
-        }
-
-      _port_ctx_pending[cpu] = 1;
-    }
-  if (source & bcm::local::SRC_MBOX0)
-    {
-      bcm_irq::ack_ipi(cpu);
-      _port_ctx_pending[cpu] = 1;
-    }
-  // A GPU interrupt must be dispatched even when this same handler entry also
-  // carries the timer tick or the reschedule IPI. The legacy BCM2837 IRQ is
-  // level-triggered, so the old "only if nothing else is pending" test did not
-  // LOSE the interrupt — but it could defer servicing it by a whole tick, which
-  // stalls a bulk USB transfer and is invisible in a trace.
-  if (source & bcm::local::SRC_GPU)
-    {
-      port_external_irq_handler(source);
-    }
-
-  uint64_t *ret_sp = current_sp;
-  if (_port_ctx_pending[cpu])
-    {
-      if (!os::rtos::scheduler::locked () && os::rtos::port::scheduler::_smp_klock.owner != cpu)
-        {
-          _port_ctx_pending[cpu] = 0;
-          uint64_t *new_sp = (uint64_t *)port_switch_stacks(current_sp);
-          validate_context(new_sp, current_sp);
-          ret_sp = new_sp;
-        }
-    }
-
-  _in_isr[cpu] = false;
-  return ret_sp;
-}
 
 extern "C" void port_smp_secondary_start(void)
 {

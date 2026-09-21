@@ -54,31 +54,96 @@ add_subdirectory ("${UOS_SMP_DIR}" micro-os-plus-iii-smp)
 add_subdirectory ("${UOS_DEVICES_DIR}" micro-os-plus-iii-devices)
 
 # -----------------------------------------------------------------------------
+# Boards.
+#
+# Boards are DISCOVERED, not listed. Every directory under boards/ that holds
+# a board.cmake is a board, and that file is the only place its facts are
+# written: sources, CPU flags, core count, capabilities, linker scripts,
+# libraries and defines. Nothing here knows any board's name.
+#
+# A directory WITHOUT a board.cmake is not a board -- it is a source directory
+# several boards share. rpi3b shares rpi-zero-2w's, being the same silicon.
+#
+# Anything a board leaves unset that the shared sources need becomes a compile
+# error in src/board-contract.cpp, not a silent inheritance of another board's
+# answer.
+# -----------------------------------------------------------------------------
+file (GLOB _board_decls CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/boards/*/board.cmake")
+set (_board_ids "")
+foreach (_decl IN LISTS _board_decls)
+  get_filename_component (_dir "${_decl}" DIRECTORY)
+  get_filename_component (_id "${_dir}" NAME)
+  list (APPEND _board_ids "${_id}")
+endforeach ()
+list (SORT _board_ids)
+
+set (BOARD "rpi-zero-2w" CACHE STRING "Target board (one of: ${_board_ids})")
+set_property (CACHE BOARD PROPERTY STRINGS ${_board_ids})
+
+if (NOT BOARD IN_LIST _board_ids)
+  message (FATAL_ERROR
+    "BOARD=${BOARD} is not a board of this port.\n"
+    "Available: ${_board_ids}\n"
+    "A board is a directory under boards/ containing a board.cmake.")
+endif ()
+
+include ("${CMAKE_CURRENT_SOURCE_DIR}/boards/${BOARD}/board.cmake")
+
+foreach (_required IN ITEMS UOS_BOARD_SRC_DIR UOS_BOARD_FLAGS UOS_BOARD_NCPU
+                            UOS_BOARD_CAPS UOS_BOARD_LINKER_HW
+                            UOS_BOARD_LINKER_QEMU UOS_BOARD_DEFINES)
+  if (NOT DEFINED ${_required})
+    message (FATAL_ERROR "boards/${BOARD}/board.cmake does not set ${_required}.")
+  endif ()
+endforeach ()
+
+get_filename_component (UOS_BOARD_SRC_DIR "${UOS_BOARD_SRC_DIR}" ABSOLUTE)
+if (NOT IS_DIRECTORY "${UOS_BOARD_SRC_DIR}")
+  message (FATAL_ERROR
+    "boards/${BOARD}/board.cmake points at ${UOS_BOARD_SRC_DIR}, which does not exist.")
+endif ()
+
+# Published for test/CMakeLists.txt, which is a separate directory scope.
+foreach (_v IN ITEMS UOS_BOARD_SRC_DIR UOS_BOARD_NCPU UOS_BOARD_CAPS
+                     UOS_BOARD_LINKER_HW UOS_BOARD_LINKER_QEMU)
+  set (${_v} "${${_v}}" CACHE INTERNAL "board fact")
+endforeach ()
+
+file (GLOB _board_sources CONFIGURE_DEPENDS
+      "${UOS_BOARD_SRC_DIR}/src/*.cpp" "${UOS_BOARD_SRC_DIR}/src/*.S"
+      "${UOS_BOARD_SRC_DIR}/src/rtos/*.cpp")
+
+# -----------------------------------------------------------------------------
 # The port itself.
 add_library (micro-os-plus-iii-aarch64-interface INTERFACE)
 
 target_include_directories (
   micro-os-plus-iii-aarch64-interface
-  INTERFACE "include"
+  INTERFACE "include" "${UOS_BOARD_SRC_DIR}/include"
 )
 
 target_sources (
   micro-os-plus-iii-aarch64-interface
   INTERFACE
-        src/startup.S
+        # Shared ARMv8-A: the same on every board this port runs on.
         src/context_switch.cpp
         src/exception_handler.cpp
         src/handlers.cpp
-        src/mmu.cpp
-        src/port_sys.cpp
-        src/smp.cpp
         src/smp_secondary.cpp
-        src/timer_arm.cpp
-        # The port's half of the scheduler: bring-up, the kernel lock and the
-        # context-switch hooks. The kernel's own src/rtos/os-core.cpp is the
-        # portable half and is compiled alongside it, exactly as the previous
-        # Makefiles did.
+        # The port's half of the scheduler. The kernel's own
+        # src/rtos/os-core.cpp is the portable half and is compiled alongside
+        # it, exactly as the previous Makefiles did.
         src/rtos/os-core.cpp
+        # No code. Fails the build the moment a board has not stated
+        # something the shared sources need. See the file's own header.
+        src/board-contract.cpp
+        # Per-board: startup, MMU tables, the tick, the IPI, the console, and
+        # the interrupt dispatch (boards/<board>/src/rtos/port_isr.cpp).
+        ${_board_sources}
+)
+
+target_compile_definitions (
+  micro-os-plus-iii-aarch64-interface INTERFACE ${UOS_BOARD_DEFINES}
 )
 
 target_compile_options (
@@ -86,14 +151,14 @@ target_compile_options (
   # Only the silicon. The flags every bare-metal application shares
   # (-O2, -ffunction-sections, -fno-exceptions, -nostartfiles, ...) are
   # set once by uos_add_app.
-  INTERFACE -mcpu=cortex-a53
+  INTERFACE ${UOS_BOARD_FLAGS}
 )
 
 # The same machine flags at link time: the driver has to pick the matching
 # multilib, or the link fails on the float ABI.
 target_link_options (
   micro-os-plus-iii-aarch64-interface
-  INTERFACE -mcpu=cortex-a53
+  INTERFACE ${UOS_BOARD_FLAGS}
 )
 
 target_link_libraries (
@@ -104,7 +169,7 @@ target_link_libraries (
         # AArch32 port's. This project supplies os-c-decls.h and os-inlines.h,
         # which are where the word size and the instructions actually live.
         micro-os-plus::port-smp-decls
-        micro-os-plus::soc-bcm2837
+        ${UOS_BOARD_LIBS}
 )
 
 add_library (micro-os-plus::aarch64 ALIAS micro-os-plus-iii-aarch64-interface)

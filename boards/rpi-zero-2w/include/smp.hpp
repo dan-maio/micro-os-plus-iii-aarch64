@@ -1,5 +1,14 @@
 #pragma once
 
+// The DRAM window this board's images live in. The port checks a stack
+// pointer against it before switching to it, so a frame built from a wild
+// pointer stops here instead of somewhere unrecognisable later.
+//
+// No integer suffix: these are pasted into comparisons and, on the AArch32
+// port, straight into inline asm.
+#define PORT_RAM_BASE 0x00080000
+#define PORT_RAM_END  0x20000000
+
 #include <cstdint>
 #include <cmsis-plus/rtos/port/os-decls.h>
 
