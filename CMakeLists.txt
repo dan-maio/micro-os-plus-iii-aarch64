@@ -157,7 +157,7 @@ target_sources (
         src/rtos/os-core.cpp
         # No code. Fails the build the moment a board has not stated
         # something the shared sources need. See the file's own header.
-        src/board-contract.cpp
+        "${UOS_SMP_DIR}/test_smpl/src/board-contract.cpp"
         # Per-board: startup, MMU tables, the tick, the IPI, the console, and
         # the interrupt dispatch (test/boards/<board>/src/rtos/port_isr.cpp).
         ${_board_sources}
@@ -190,6 +190,10 @@ target_link_libraries (
         # AArch32 port's. This project supplies os-c-decls.h and os-inlines.h,
         # which are where the word size and the instructions actually live.
         micro-os-plus::port-smp-decls
+        # hw_result.hpp, shared with the other silicon port. Header only --
+        # board-contract.cpp is named above, in the position this port's own
+        # copy used to hold, so link order does not move.
+        micro-os-plus::test-support
         ${UOS_BOARD_LIBS}
 )
 
