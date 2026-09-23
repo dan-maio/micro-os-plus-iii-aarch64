@@ -32,6 +32,8 @@ esac
 
 TC="$(ls -d "$HOME"/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.*/.content/bin 2>/dev/null | sort -V | tail -1)"
 SMP_DIR="${UOS_SMP_DIR:-$(cd "$ROOT/.." && pwd)/micro-os-plus-iii-smp}"
+# A workspace may keep the sibling as a `*.git` working copy.
+[ -d "$SMP_DIR" ] || SMP_DIR="$SMP_DIR.git"
 
 # The facts that differ from the 32-bit port on the same silicon:
 #   * entry 0x80000, where the AArch64 image is linked;
