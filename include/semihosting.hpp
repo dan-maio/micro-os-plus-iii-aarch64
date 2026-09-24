@@ -23,6 +23,7 @@
  */
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 
 namespace semihosting
@@ -43,6 +44,19 @@ namespace semihosting
   {
     register std::uint64_t x0 asm ("x0") = 0x04;
     register const char* x1 asm ("x1") = s;
+    asm volatile ("hlt #0xF000" : "+r" (x0) : "r" (x1) : "memory", "cc");
+  }
+
+  // SYS_WRITE (0x05): write len bytes from buf to the console handle (1), so
+  // the buffer need not be NUL-terminated. x1 points to { handle, buf, len }.
+  inline void
+  write_buf (const char* buf, std::size_t len) noexcept
+  {
+    volatile std::uint64_t block[3] = {
+      1, reinterpret_cast<std::uint64_t> (buf), len
+    };
+    register std::uint64_t x0 asm ("x0") = 0x05;
+    register volatile std::uint64_t* x1 asm ("x1") = block;
     asm volatile ("hlt #0xF000" : "+r" (x0) : "r" (x1) : "memory", "cc");
   }
 

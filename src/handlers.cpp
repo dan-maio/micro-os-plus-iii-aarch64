@@ -52,6 +52,13 @@ void _Exit (int code) { port_exit (code); }
 
 int _write (int, const char* buf, int len)
 {
+    // The board console is the UART; under SEMIHOST also copy to the
+    // debugger's semihosting console, so the suites' printf() output shows up
+    // in the run log as well as on the serial terminal. Always in addition to
+    // the UART, never instead of it.
+#if defined(SEMIHOST)
+    semihosting::write_buf(buf, static_cast<std::size_t>(len));
+#endif
     for (int i = 0; i < len; ++i)
     {
         if (buf[i] == '\n')
