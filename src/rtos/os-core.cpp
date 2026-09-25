@@ -23,6 +23,10 @@
 #include <timer_arm.hpp>
 #include <uart.hpp>
 
+#if defined(SEMIHOST)
+#include <semihosting.hpp>
+#endif
+
 extern "C" void port_sys_init(void);
 extern "C" void port_ctx_switchHandler(void);
 extern "C" unsigned port_cpu_id(void);
@@ -392,16 +396,19 @@ namespace os
     ssize_t
     write (const void* buf, std::size_t nbyte)
     {
-      const char* cbuf = reinterpret_cast<const char*>(buf);
+#if defined(SEMIHOST)
+      semihosting::write_buf (reinterpret_cast<const char*> (buf), nbyte);
+#endif
+      const char* cbuf = reinterpret_cast<const char*> (buf);
       for (std::size_t i = 0; i < nbyte; ++i)
         {
           if (cbuf[i] == '\n')
             {
-              uart::uart1.putc('\r');
+              uart::uart1.putc_uart ('\r');
             }
-          uart::uart1.putc(cbuf[i]);
+          uart::uart1.putc_uart (cbuf[i]);
         }
-      return static_cast<ssize_t>(nbyte);
+      return static_cast<ssize_t> (nbyte);
     }
   }
 }

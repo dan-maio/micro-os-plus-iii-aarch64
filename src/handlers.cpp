@@ -62,8 +62,8 @@ int _write (int, const char* buf, int len)
     for (int i = 0; i < len; ++i)
     {
         if (buf[i] == '\n')
-            uart::uart1.putc('\r');
-        uart::uart1.putc(buf[i]);
+            uart::uart1.putc_uart('\r');
+        uart::uart1.putc_uart(buf[i]);
     }
     return len;
 }
