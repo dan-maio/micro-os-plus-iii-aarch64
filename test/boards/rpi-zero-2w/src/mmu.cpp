@@ -66,6 +66,23 @@ constexpr std::uint64_t SCTLR_DZE = (1ULL << 14);  // DC ZVA at EL1/EL0 (memset)
 alignas(4096) std::uint64_t l1[512];
 alignas(4096) std::uint64_t l2[512];
 
+#if defined(UOS_CMSIS_OS_VALIDATOR)
+// The CMSIS-RTOS validator is Cortex-M code: at start it probes the DWT cycle
+// counter by reading DWT_CTRL (0xE0001000) and DWT_CYCCNT (0xE0001004)
+// directly. Those addresses are unmapped here and fault. Only the validator's
+// image defines UOS_CMSIS_OS_VALIDATOR (test/rpi-zero-2w/tests.cmake); it gets
+// one 4 KB RAM page at 0xE0001000 whose DWT_CTRL reads NOCYCCNT ("no cycle
+// counter"), so the validator runs its wait tests without cycle measurements,
+// as on a Cortex-M without a DWT. Every other test's tables are unchanged.
+constexpr std::uint64_t DWT_BASE        = 0xE0001000ULL;
+constexpr std::uint32_t DWT_CTRL_NOCYCCNT = (1u << 25);
+constexpr std::uint64_t PTE_PAGE        = (1ULL << 1);   // at L3: page
+
+alignas(4096) std::uint64_t l2_high[512];  // 0xC0000000 .. 0xFFFFFFFF
+alignas(4096) std::uint64_t l3_dwt[512];   // 0xE0000000 .. 0xE01FFFFF
+alignas(4096) std::uint32_t dwt_page[1024];
+#endif
+
 std::uint64_t make_block(std::uint64_t pa, std::uint64_t attr_idx,
                          std::uint64_t sh) noexcept {
     return pa | PTE_VALID | PTE_BLOCK | PTE_AF | attr_idx | sh;
@@ -92,6 +109,22 @@ void build_tables() noexcept {
     l1[0] = reinterpret_cast<std::uint64_t>(&l2[0]) | PTE_VALID | PTE_TABLE;
     // L1[1] -> 1 GB Device block covering the ARM local peripherals.
     l1[1] = make_block(LOCAL_BASE, ATTR_IDX_DEVICE, PTE_SH_NONE);
+
+#if defined(UOS_CMSIS_OS_VALIDATOR)
+    for (std::size_t i = 0; i < 512; ++i) { l2_high[i] = 0; l3_dwt[i] = 0; }
+    for (std::size_t i = 0; i < 1024; ++i) { dwt_page[i] = 0; }
+    dwt_page[0] = DWT_CTRL_NOCYCCNT;  // DWT_CTRL: no cycle counter
+
+    // L1[3] -> L2 (0xC0000000 ..), L2[256] -> L3 (0xE0000000 ..),
+    // L3[1] -> the page above, at 0xE0001000.
+    l3_dwt[(DWT_BASE >> 12) & 0x1FF] =
+        reinterpret_cast<std::uint64_t>(&dwt_page[0]) | PTE_VALID | PTE_PAGE
+        | PTE_AF | ATTR_IDX_NORMAL | PTE_SH_IS;
+    l2_high[(DWT_BASE >> 21) & 0x1FF] =
+        reinterpret_cast<std::uint64_t>(&l3_dwt[0]) | PTE_VALID | PTE_TABLE;
+    l1[DWT_BASE >> 30] =
+        reinterpret_cast<std::uint64_t>(&l2_high[0]) | PTE_VALID | PTE_TABLE;
+#endif
 
     __asm__ volatile("dsb sy" ::: "memory");
 }
