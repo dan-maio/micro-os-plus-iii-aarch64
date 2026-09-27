@@ -135,13 +135,14 @@ void enable_on_this_core() noexcept {
     __asm__ volatile("msr mair_el1, %0" :: "r"(mair));
 
     // TCR: T0SZ=30 (34-bit VA, start level 1), 4 KB granule, Inner-Shareable,
-    // Inner/Outer WB WA walks, IPS = 40-bit PA.
+    // Inner/Outer WB WA walks, EPD1=1 (disable TTBR1 table walks), IPS = 40-bit PA.
     std::uint64_t tcr =
         (30ULL << 0)  |   // T0SZ
         (1ULL  << 8)  |   // IRGN0 = WB WA
         (1ULL  << 10) |   // ORGN0 = WB WA
         (3ULL  << 12) |   // SH0   = Inner-Shareable
         (0ULL  << 14) |   // TG0   = 4 KB
+        (1ULL  << 23) |   // EPD1  = disable TTBR1 walks
         (2ULL  << 32);    // IPS   = 40-bit
     __asm__ volatile("msr tcr_el1, %0" :: "r"(tcr));
 
