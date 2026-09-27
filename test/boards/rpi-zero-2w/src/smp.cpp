@@ -58,7 +58,16 @@ void release_one(unsigned core)
     __asm__ volatile("dc cvac, %0" :: "r"(reinterpret_cast<std::uint64_t>(&__smp_spin[core])));
     __asm__ volatile("dsb sy" ::: "memory");
     // Release the spin-table-held core -> _start -> secondary_park -> coreN.
-    *release_word(core) = reinterpret_cast<std::uint64_t>(&_start);
+    // Like the __smp_spin slot above, the release word is written cacheable
+    // (the MMU maps the low 2 MB Normal WB) but is read by the parked core
+    // through the arm stub with caches OFF, so it must be cleaned to the point
+    // of coherency too. 0xD8 + 8*core is only 8-byte aligned, so clean the
+    // line it lives in.
+    volatile std::uint64_t* rw = release_word(core);
+    *rw = reinterpret_cast<std::uint64_t>(&_start);
+    const std::uintptr_t rw_line =
+        reinterpret_cast<std::uintptr_t>(rw) & ~static_cast<std::uintptr_t>(63u);
+    __asm__ volatile("dc cvac, %0" :: "r"(rw_line) : "memory");
     dsb();
     sev();
 

@@ -47,13 +47,18 @@ typedef struct {
 } os_port_smp_tlock_t;
 
 #define SMP_NO_OWNER  0xFFFFFFFFu
-/* The build chooses the core count (uos_add_app NCPU ...); four is the
- * BCM2837 default when nothing says otherwise. */
+/* OS_NCPU and OS_SMP_IPI_SGI are BOARD facts and have no default here, for the
+ * same reason the AArch32 port removed them: a silent OS_NCPU=4 would give a
+ * board whose build forgot to say a different scheduler, and OS_SMP_IPI_SGI=0
+ * means unrelated things on different interrupt controllers. A board that does
+ * not state them does not compile; they come from boards/<board>/board.cmake
+ * (UOS_BOARD_NCPU / UOS_BOARD_DEFINES). */
 #ifndef OS_NCPU
-#define OS_NCPU       4
+#error "OS_NCPU is a board fact: set UOS_BOARD_NCPU in boards/<board>/board.cmake."
 #endif
-/* BCM2837 has no GIC/SGIs; cross-core reschedule uses local mailbox 0. */
-#define OS_SMP_IPI_SGI 0
+#if (OS_NCPU > 1) && !defined(OS_SMP_IPI_SGI)
+#error "OS_SMP_IPI_SGI is a board fact: add it to UOS_BOARD_DEFINES in boards/<board>/board.cmake -- the interrupt a core uses to ask another to reschedule."
+#endif
 
 /* Select the SMP variant of the shared kernel. A single-CPU build of this
  * same port leaves it undefined and gets the scalar scheduler. */

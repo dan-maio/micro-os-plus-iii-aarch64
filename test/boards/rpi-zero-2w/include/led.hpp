@@ -44,25 +44,30 @@ constexpr std::uint32_t kActLed       = 130u;        // expander STATUS_LED
 constexpr std::uint32_t kMaxSpin = 0x400000u;        // bounded wait
 
 inline void cache_clean(const volatile void* p, std::uint32_t bytes) noexcept {
-    // Clean data cache line by VA to point of coherence (AArch64).
-    std::uintptr_t a = reinterpret_cast<std::uintptr_t>(p);
-    const std::uintptr_t end = a + bytes;
+    // Clean data cache line by VA to point of coherence (AArch64). Round the
+    // start down to a line boundary: dc cvac is only defined for an aligned
+    // address, and the buffer may start mid-line.
+    const std::uint32_t line = 64u; // Cortex-A53
+    std::uintptr_t a = reinterpret_cast<std::uintptr_t>(p) & ~(line - 1u);
+    const std::uintptr_t end = reinterpret_cast<std::uintptr_t>(p) + bytes;
     __asm__ volatile("dsb ish" ::: "memory");
     while (a < end) {
         __asm__ volatile("dc cvac, %0" :: "r"(a) : "memory");
-        a += 64u; // Cortex-A53 line
+        a += line;
     }
     __asm__ volatile("dsb ish" ::: "memory");
 }
 
 inline void cache_invalidate(const volatile void* p, std::uint32_t bytes) noexcept {
-    // Invalidate data cache line by VA (AArch64).
-    std::uintptr_t a = reinterpret_cast<std::uintptr_t>(p);
-    const std::uintptr_t end = a + bytes;
+    // Invalidate data cache line by VA (AArch64). Round down for the same
+    // reason as cache_clean().
+    const std::uint32_t line = 64u;
+    std::uintptr_t a = reinterpret_cast<std::uintptr_t>(p) & ~(line - 1u);
+    const std::uintptr_t end = reinterpret_cast<std::uintptr_t>(p) + bytes;
     __asm__ volatile("dsb ish" ::: "memory");
     while (a < end) {
         __asm__ volatile("dc ivac, %0" :: "r"(a) : "memory");
-        a += 64u;
+        a += line;
     }
     __asm__ volatile("dsb ish" ::: "memory");
     __asm__ volatile("isb" ::: "memory");

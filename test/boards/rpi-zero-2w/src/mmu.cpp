@@ -148,6 +148,13 @@ void enable_on_this_core() noexcept {
 
     __asm__ volatile("msr ttbr0_el1, %0" :: "r"(reinterpret_cast<std::uint64_t>(&l1[0])));
 
+    // Invalidate the I-cache/branch predictors as well as the TLB before the
+    // new translation regime is relied upon (mirrors the AArch32 port's
+    // ICIALLU/BPIALL). IC IALLU is the ARMv8 equivalent; the reset value has
+    // SCTLR_EL1.I=0 so this is belt-and-braces for a core entered from the
+    // arm stub with stale fetched lines.
+    __asm__ volatile("dsb ish" ::: "memory");
+    __asm__ volatile("ic iallu" ::: "memory");
     __asm__ volatile("tlbi vmalle1" ::: "memory");
     __asm__ volatile("dsb ish" ::: "memory");
     __asm__ volatile("isb" ::: "memory");

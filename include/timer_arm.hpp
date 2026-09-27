@@ -56,6 +56,8 @@ void init() noexcept;
 
 void start_1ms() noexcept;
 
+std::uint32_t frequency() noexcept;
+
 } // namespace timer_arm
 
 #endif /* TIMER_ARM_HPP */
