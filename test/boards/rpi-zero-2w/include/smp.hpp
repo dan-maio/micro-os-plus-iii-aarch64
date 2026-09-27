@@ -4,20 +4,10 @@
 // pointer against it before switching to it, so a frame built from a wild
 // pointer stops here instead of somewhere unrecognisable later.
 //
-// No integer suffix: these are pasted into comparisons and, on the AArch32
-// port, straight into inline asm.
-// BOARD_RPI3B (boards/rpi3b/board.cmake) selects the Pi 3 B, exactly as it
-// does for the LED driver, the banner and the RAM_TOP in mmu.cpp. This window
-// is the same fact as that RAM_TOP and as the linker region: a 1 GB board is
-// linked and mapped to 0x3F000000, so a stack pointer is validated against
-// 0x3F000000 too. Without this branch every thread stack above 512 MiB looked
-// corrupt to validate_context().
-#define PORT_RAM_BASE 0x00080000
-#ifdef BOARD_RPI3B
-#define PORT_RAM_END  0x3F000000   // Pi 3 B, 1 GB: matches linker-rpi3b.ld
-#else
-#define PORT_RAM_END  0x20000000   // Pi Zero 2 W, 512 MiB: matches linker.ld
-#endif
+// The numbers live in board_ram.h because startup.S's cooperative switch
+// checks the same window and cannot include this C++ header; both include
+// board_ram.h so the fact is written once. See that file's own comment.
+#include "board_ram.h"
 
 #include <cstdint>
 #include <cmsis-plus/rtos/port/os-decls.h>

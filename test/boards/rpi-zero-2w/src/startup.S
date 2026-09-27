@@ -20,6 +20,11 @@
  *   [288]  q0..q31            (32 * 16 = 512)
  */
 
+/* PORT_RAM_BASE/PORT_RAM_END: the board's DRAM window, shared with the C++
+ * validate_context() so the cooperative switch's bounds check is not a second
+ * copy of the memory map. */
+#include "board_ram.h"
+
 	.equ FRAME, 800
 
 /* ------------------------------------------------------------------ macros */
@@ -462,14 +467,13 @@ port_ctx_switchHandler:
 	SAVE_FRAME
 	mov	x0, sp
 	bl	port_switch_stacks        // x0 = next thread's frame SP
-	ldr	x1, =0x00080000
+	/* Bounds are the board's DRAM window, the same two numbers the C++
+	 * validate_context() checks; board_ram.h is the one place they are
+	 * written, so the assembler and the compiler cannot disagree. */
+	ldr	x1, =PORT_RAM_BASE
 	cmp	x0, x1
 	b.lo	.Lcoop_corrupt
-#if defined(BOARD_RPI3B)
-	ldr	x1, =0x3F000000
-#else
-	ldr	x1, =0x20000000
-#endif
+	ldr	x1, =PORT_RAM_END
 	cmp	x0, x1
 	b.hs	.Lcoop_corrupt
 	mov	sp, x0

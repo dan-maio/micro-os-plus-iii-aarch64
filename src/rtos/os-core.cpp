@@ -248,8 +248,14 @@ namespace os
                   new_thread->context_.port_.stack_ptr);
               bool bad_bounds = (lo != nullptr && hi > lo
                   && (p < lo || p + sizeof(ctx64) > hi));
+              /* SPSR sits at SPSR_IDX in the frame; derive the byte offset
+               * from the same constant the asm layout and port_isr.cpp use,
+               * so a layout change cannot silently desynchronise the check.
+               * (The AArch32 tripwire uses ctx_cpsr_word the same way.) */
               uint64_t spsr = (p != nullptr)
-                  ? *reinterpret_cast<uint64_t*> (p + 248) : 0;
+                  ? *reinterpret_cast<uint64_t*> (
+                        p + SPSR_IDX * sizeof (std::uint64_t))
+                  : 0;
               bool bad_frame = (p != nullptr
                   && ((spsr & 0x1FU) != MODE_EL1H));
               if (bad_bounds || bad_frame)

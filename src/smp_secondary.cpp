@@ -32,9 +32,14 @@ extern "C" void boot_core2()
     port_smp_secondary_start();
 }
 
+// A fourth core exists on the BCM2837 but not on every AArch64 board. Compiling
+// this where OS_NCPU < 4 would give it a write one past the end of
+// g_core_stage[OS_NCPU]; the AArch32 port wraps its boot_core3() the same way.
+#if OS_NCPU > 3
 extern "C" void boot_core3()
 {
     g_core_stage[3] = 3;
     DBG_BOOT("[boot] core3 in boot_core3\n");
     port_smp_secondary_start();
 }
+#endif
