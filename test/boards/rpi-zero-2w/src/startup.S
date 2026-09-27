@@ -116,7 +116,7 @@
 	 * Clobbers x9-x13. */
 	.macro SMP_PUBLISH
 	mrs	x9, mpidr_el1
-	and	x9, x9, #3
+	and	x9, x9, #0xFF
 	adrp	x10, _smp_pub_addr
 	add	x10, x10, #:lo12:_smp_pub_addr
 	ldr	x11, [x10, x9, lsl #3]
@@ -265,7 +265,7 @@ el1_entry:
 
 	// Dispatch by MPIDR.Aff0.
 	mrs	x0, mpidr_el1
-	and	x0, x0, #3
+	and	x0, x0, #0xFF
 	cbz	x0, core0_start
 	b	secondary_park
 
@@ -300,7 +300,7 @@ hang0:	wfe
 	.global secondary_park
 secondary_park:
 	mrs	x4, mpidr_el1
-	and	x4, x4, #3
+	and	x4, x4, #0xFF
 	ldr	x5, =__smp_spin
 1:	wfe
 	ldr	x6, [x5, x4, lsl #3]       // __smp_spin[core] (entry pointer)
@@ -465,7 +465,11 @@ port_ctx_switchHandler:
 	ldr	x1, =0x00080000
 	cmp	x0, x1
 	b.lo	.Lcoop_corrupt
+#if defined(BOARD_RPI3B)
+	ldr	x1, =0x3F000000
+#else
 	ldr	x1, =0x20000000
+#endif
 	cmp	x0, x1
 	b.hs	.Lcoop_corrupt
 	mov	sp, x0
