@@ -50,4 +50,6 @@ UOS_HW_SPIN_WORDS=8 \
 UOS_HW_RESUME=pc \
 UOS_HW_NCPU=4 \
 UOS_HW_TARGET_FMT="bcm2837.cpu%d" \
+UOS_HW_PRELOAD="${UOS_HW_PRELOAD:-mww 0x3f100024 0x5a000001; mww 0x3f10001c 0x5a000020}" \
 exec "$SMP_DIR/test_smpl/run-hw.sh" "$BUILD/test" "${1:-list}" "${2:-}"
+
