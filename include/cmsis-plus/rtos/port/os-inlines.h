@@ -51,7 +51,7 @@ namespace os
         {
           uint64_t mpidr;
           __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          return static_cast<unsigned>(mpidr) & 3U;
+          return static_cast<unsigned>(mpidr & 0xFFu);
         }
 
         inline bool __attribute__ ((always_inline))
@@ -104,9 +104,7 @@ namespace os
         port_set_lock (void)
         {
           __asm__ volatile("msr daifset, #2" ::: "memory");
-          uint64_t mpidr;
-          __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          unsigned cpu = static_cast<unsigned>(mpidr) & 3U;
+          const unsigned cpu = port_cpu_id_inline ();
           if (_smp_klock.owner != cpu)
           {
             _smp_klock_raw_acquire();
@@ -119,9 +117,7 @@ namespace os
         inline void __attribute__ ((always_inline))
         port_put_lock (uint64_t lck)
         {
-          uint64_t mpidr;
-          __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          unsigned cpu = static_cast<unsigned>(mpidr) & 3U;
+          const unsigned cpu = port_cpu_id_inline ();
           if (_smp_klock.owner == cpu && _smp_klock.depth > 0)
           {
             uint32_t d = _smp_klock.depth - 1;
@@ -142,9 +138,7 @@ namespace os
         inline void __attribute__ ((always_inline))
         port_clr_lock (void)
         {
-          uint64_t mpidr;
-          __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          unsigned cpu = static_cast<unsigned>(mpidr) & 3U;
+          const unsigned cpu = port_cpu_id_inline ();
           if (_smp_klock.owner == cpu)
           {
             _smp_klock.depth = 0;
@@ -212,9 +206,7 @@ namespace os
         inline bool __attribute__ ((always_inline))
         in_handler_mode (void)
         {
-          uint64_t mpidr;
-          __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          unsigned cpu = static_cast<unsigned>(mpidr) & 3U;
+          const unsigned cpu = scheduler::port_cpu_id_inline ();
           return (cpu < OS_NCPU) && _in_isr[cpu];
         }
 
@@ -231,9 +223,7 @@ namespace os
           __asm__ volatile("mrs %0, daif" : "=r"(daif));
           __asm__ volatile("msr daifset, #2" ::: "memory");
 
-          uint64_t mpidr;
-          __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          unsigned cpu = static_cast<unsigned>(mpidr) & 3U;
+          const unsigned cpu = scheduler::port_cpu_id_inline ();
           if (scheduler::_smp_klock.owner != cpu)
           {
             scheduler::_smp_klock_raw_acquire();
@@ -247,9 +237,7 @@ namespace os
         inline void __attribute__ ((always_inline))
         critical_section::exit (rtos::interrupts::state_t state)
         {
-          uint64_t mpidr;
-          __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-          unsigned cpu = static_cast<unsigned>(mpidr) & 3U;
+          const unsigned cpu = scheduler::port_cpu_id_inline ();
           if (scheduler::_smp_klock.owner == cpu && scheduler::_smp_klock.depth > 0)
           {
             uint32_t d = scheduler::_smp_klock.depth - 1;

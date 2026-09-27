@@ -105,7 +105,7 @@ extern "C" unsigned port_cpu_id(void)
 {
     std::uint64_t mpidr;
     __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-    return static_cast<unsigned>(mpidr) & 3u;
+    return static_cast<unsigned>(mpidr & 0xFFu);
 }
 
 extern "C" void port_smp_ipi(unsigned cpu)

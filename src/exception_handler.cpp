@@ -47,7 +47,7 @@ extern "C" void port_fatal_exception(std::uint64_t type, std::uint64_t esr,
 
     std::uint64_t mpidr;
     __asm__ volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
-    unsigned cpu = static_cast<unsigned>(mpidr) & 3u;
+    unsigned cpu = static_cast<unsigned>(mpidr & 0xFFu);
     std::uint32_t ec = static_cast<std::uint32_t>(esr >> 26) & 0x3f;
 
     uart::uart1 << "\n\n!!! FATAL EXCEPTION (core " << static_cast<int>(cpu)
