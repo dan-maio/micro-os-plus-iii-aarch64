@@ -1,0 +1,9 @@
+# Raspberry Pi Zero 2W hw-park boot config (J-Link + OpenOCD debug-in-RAM).
+#
+# Minimal config.txt for the boot partition when it carries the hw-park
+# kernel8.img. Copy this next to hw-park's kernel8.img on the SD card.
+arm_64bit=1
+kernel=kernel8.img
+enable_uart=1
+core_freq=250
+gpu_mem=16
