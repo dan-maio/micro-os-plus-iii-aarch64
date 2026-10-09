@@ -37,17 +37,21 @@ SMP_DIR="${UOS_SMP_DIR:-$(cd "$ROOT/.." && pwd)/micro-os-plus-iii-smp}"
 
 # The facts that differ from the 32-bit port on the same silicon:
 #   * entry 0x80000, where the AArch64 image is linked;
-#   * __smp_spin is uint64_t[4], so EIGHT 32-bit words are zeroed;
-#   * resume means "set the PC" -- a core keeps the exception level it was
-#     halted in, which is what startup.S dispatches on;
+#   * only core 0 is started (set the PC -- a core keeps the exception level
+#     it was halted in, which is what startup.S dispatches on). Cores 1-3 are
+#     resumed where they were halted: in the firmware's spin-table loop after
+#     the watchdog reset, until the kernel releases them (smp.cpp) once it
+#     has written their __smp_spin slot. So __smp_spin is not zeroed here.
+#     This needs an SD card whose kernel leaves cores 1-3 in that loop
+#     (e.g. hw-park/); the previous all-cores flow is kept in hw.sh.bak;
 #   * these OpenOCD configs are declarative, so the runner issues `init`.
 UOS_HW_CFG="$CFG" \
 UOS_HW_CFG_INIT=1 \
 UOS_HW_NM="${TC:+$TC/}aarch64-none-elf-nm" \
 UOS_HW_READELF="${TC:+$TC/}aarch64-none-elf-readelf" \
 UOS_HW_ENTRY=0x80000 \
-UOS_HW_SPIN_WORDS=8 \
-UOS_HW_RESUME=pc \
+UOS_HW_SPIN_WORDS=0 \
+UOS_HW_RESUME=pc-first \
 UOS_HW_NCPU=4 \
 UOS_HW_TARGET_FMT="bcm2837.cpu%d" \
 UOS_HW_PRELOAD="${UOS_HW_PRELOAD:-mww 0x3f100024 0x5a000001; mww 0x3f10001c 0x5a000020}" \
