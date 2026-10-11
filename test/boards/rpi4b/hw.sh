@@ -47,8 +47,9 @@ SMP_DIR="${UOS_SMP_DIR:-$(cd "$ROOT/.." && pwd)/micro-os-plus-iii-smp}"
 #     (src/smp.cpp). So __smp_spin is not zeroed here;
 #   * the OpenOCD config is declarative, so the runner issues `init`;
 #   * the board is reset through the PM watchdog before each test;
-#   * as on the Zero 2 W: all four cores are halted, have semihosting enabled
-#     and are resumed.
+#   * only core 0 is halted; cores 1-3 remain in the armstub8 spin-table loop
+#     until the kernel releases them (smp.cpp), so OpenOCD does not cache stale
+#     registers when CTI restarts them. Semihosting is enabled on all 4 cores.
 UOS_HW_CFG="$CFG" \
 UOS_HW_CFG_INIT=1 \
 UOS_HW_NM="${TC:+$TC/}aarch64-none-elf-nm" \
@@ -57,6 +58,8 @@ UOS_HW_ENTRY=0x80000 \
 UOS_HW_SPIN_WORDS=0 \
 UOS_HW_RESUME=pc-first \
 UOS_HW_NCPU=4 \
+UOS_HW_CORES=0 \
+UOS_HW_SEMIHOST_CORES="0 1 2 3" \
 UOS_HW_TARGET_FMT="bcm2711.cpu%d" \
 UOS_HW_RESET_WAIT="${UOS_HW_RESET_WAIT:-15}" \
 UOS_HW_IGNORE_ERRORS="${UOS_HW_IGNORE_ERRORS:-JTAG-DP STICKY ERROR|Failed to read memory at 0x80[4-7][0-9a-f]+$}" \

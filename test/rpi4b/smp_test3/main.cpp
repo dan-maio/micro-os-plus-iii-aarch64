@@ -26,6 +26,7 @@ static message_queue g_mq { "mq", 8, sizeof(void*) };  /* AArch64: slot >= sizeo
 static mutex g_print { "print" };   // serialize UART across cores
 static volatile std::uint32_t g_produced = 0, g_consumed = 0, g_primes = 0;
 static volatile unsigned g_beats = 0;
+static volatile bool g_running = true;
 
 static bool is_prime(std::uint32_t n)
 {
@@ -37,13 +38,13 @@ static bool is_prime(std::uint32_t n)
 static void* producer (void*)
 {
   std::uint32_t v = 2;
-  for (;;) { g_mq.send(&v, sizeof(v), 0); ++g_produced; ++v; sysclock.sleep_for(20); }
+  while (g_running) { g_mq.send(&v, sizeof(v), 0); ++g_produced; ++v; sysclock.sleep_for(20); }
   return nullptr;
 }
 static void* consumer (void*)
 {
   std::uint32_t v; bool led_state = false;
-  for (;;)
+  while (g_running)
   {
     if (g_mq.receive(&v, sizeof(v), nullptr) == result::ok)
     {
@@ -51,8 +52,11 @@ static void* consumer (void*)
       bool p = is_prime(v);
       if (p) { ++g_primes; led_state = !led_state; led::set(led_state); }
       g_print.lock();
-      uart::uart1 << "[c" << (int)port_cpu_id() << "] recv " << v
-                  << (p ? " PRIME\n" : " composite\n");
+      if (g_running)
+      {
+        uart::uart1 << "[c" << (int)port_cpu_id() << "] recv " << v
+                    << (p ? " PRIME\n" : " composite\n");
+      }
       g_print.unlock();
     }
   }
@@ -60,12 +64,15 @@ static void* consumer (void*)
 }
 static void* logger (void*)
 {
-  for (;;)
+  while (g_running)
   {
     g_print.lock();
-    uart::uart1 << "[c" << (int)port_cpu_id() << "] produced=" << g_produced
-                << " consumed=" << g_consumed << " primes=" << g_primes
-                << " t=" << (std::uint32_t)sysclock.now() << "ms\n";
+    if (g_running)
+    {
+      uart::uart1 << "[c" << (int)port_cpu_id() << "] produced=" << g_produced
+                  << " consumed=" << g_consumed << " primes=" << g_primes
+                  << " t=" << (std::uint32_t)sysclock.now() << "ms\n";
+    }
     g_print.unlock();
     sysclock.sleep_for(1000);
   }
@@ -144,9 +151,12 @@ int os_main (int, char*[])
       g_beats = b;
     }
   const bool ok = (test_secondaries_joined () && g_consumed > 0);
-  // Single puts() = single SYS_WRITE0: cannot interleave with another core's
-  // output in the OpenOCD log.
+  g_running = false;
+  sysclock.sleep_for(50);
+  // Under the print mutex: single puts() = single SYS_WRITE0.
+  g_print.lock();
   uart1.puts (ok ? "\nRESULT: PASS\n" : "\nRESULT: FAIL\n");
+  g_print.unlock();
   if (ok)
     {
       hw_result::ok ();

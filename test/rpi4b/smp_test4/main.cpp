@@ -155,9 +155,9 @@ int os_main (int, char*[])
         }
     }
   // Under the console mutex, so the marker a runner greps for is never
-  // interleaved with a reporter line.
+  // interleaved with a reporter line. Single puts() = single SYS_WRITE0.
   g_con.lock();
-  uart1 << "\nRESULT: " << (ok ? "PASS" : "FAIL") << "\n";
+  uart1.puts (ok ? "\nRESULT: PASS\n" : "\nRESULT: FAIL\n");
   g_con.unlock();
   if (ok)
     {
