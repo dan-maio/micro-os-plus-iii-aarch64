@@ -31,7 +31,11 @@ namespace os
         inline void __attribute__ ((always_inline))
         greeting (void)
         {
+#if defined(SOC_BCM2711)
+          trace::printf ("Scheduler: µOS++ Raspberry Pi 4 B (BCM2711, 4x Cortex-A72 SMP, AArch64/EL1, GIC-400, 1ms Tick, LDAXR lock)\n");
+#else
           trace::printf ("Scheduler: µOS++ Raspberry Pi Zero 2W (BCM2837, 4x Cortex-A53 SMP, AArch64/EL1, 1ms Tick, LDAXR lock)\n");
+#endif
         }
 
         inline port::scheduler::state_t __attribute__ ((always_inline))

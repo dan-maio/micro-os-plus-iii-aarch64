@@ -1,0 +1,25 @@
+# config.txt — the SD card of the Pi 4 B the hwd tests run on.
+# The tests are loaded over JTAG, so the card only has to boot the firmware,
+# turn JTAG and the UART on, and leave cores 1-3 in the armstub8 spin table.
+
+
+
+# UART & Debug
+enable_uart=1
+uart_2ndstage=1
+init_uart_baud=115200
+
+# Disable BT (requires .dtbo in overlays/)
+dtoverlay=pi3-disable-bt
+
+
+# JTAG
+enable_jtag_gpio=1
+#gpio=23-27=a4  # Set GPIO 23-27 to Alt4 (TMS, TDO, TDI, TRST)
+#gpio=22=a4,pu  # GPIO 22 (TCK) to Alt4 with pull-up
+gpio=22-27=a4
+
+# 64-Bit Bare-Metal (with fixes)
+arm_64bit=1
+kernel=kernel8.img
+

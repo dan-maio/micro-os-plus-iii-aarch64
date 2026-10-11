@@ -1,0 +1,210 @@
+/**
+ * @file  uart.hpp
+ * @brief PL011 UART0 console for the Raspberry Pi 4 B (BCM2711).
+ * @details TX-only, polled. The same streaming API (`putc`, `puts`,
+ *          `print_hex`, `print_dec`, `operator<<`, global `uart::uart1`) as
+ *          the Zero 2 W's, so all kernel and test code compiles unchanged. The
+ *          firmware (enable_uart=1) muxes GPIO14/15 to UART0 and clocks it at
+ *          48 MHz, so init() only (re)programs 115200 8N1 and enables TX.
+ *
+ * Semihosting mirror. Under QEMU (QEMU_BUILD) every byte also goes to the
+ * semihosting channel, which is the only console the emulator run has
+ * (-serial none). On the board (HW_BUILD) that mirror is OFF except for the
+ * verdict lines: with the CMSIS-DAP probe one semihosting call costs ~4.6 s
+ * (OpenOCD reads 33 registers over a full-speed USB link per trap), and the
+ * tests print hundreds of lines. The full console is on the UART (your own
+ * terminal on the USB-serial adapter); only a line carrying "RESULT", "FAIL"
+ * or "FATAL" -- what test_smpl/run-hw.sh greps in the OpenOCD log -- is
+ * mirrored. PORT_SEMIHOST_MIRROR tells src/rtos/os-core.cpp's trace::write()
+ * the same thing.
+ */
+#pragma once
+
+#include <cstddef>
+#include <cstdint>
+#include "bcm2711.hpp"
+
+// ---- Board label used by the runtime test banners ---------------------------
+#define PORT_BANNER_LONG  "Raspberry Pi 4 B"
+#define PORT_BANNER_SHORT "RPi 4 B"
+
+// The shared test applications print the ISA and the CPU complex through
+// these, so one copy of a test can name the silicon it is running on.
+#define PORT_BANNER_ISA   "AArch64"
+#define PORT_BANNER_CPU   "BCM2711 (4x Cortex-A72, AArch64)"
+
+#if defined(SEMIHOST)
+#include "semihosting.hpp"
+#endif
+
+// 1: mirror every console byte to semihosting; 0: only the verdict lines.
+#if defined(SEMIHOST) && !defined(HW_BUILD)
+#define PORT_SEMIHOST_MIRROR 1
+#else
+#define PORT_SEMIHOST_MIRROR 0
+#endif
+
+namespace uart {
+
+namespace detail {
+// True for a line the hardware runner must see: the verdict or a failure.
+inline bool is_verdict(const char* s) noexcept {
+    static constexpr const char* keys[] = { "RESULT", "FAIL", "FATAL" };
+    for (const char* k : keys) {
+        for (const char* p = s; *p; ++p) {
+            const char* a = p;
+            const char* b = k;
+            while (*a && *b && *a == *b) { ++a; ++b; }
+            if (*b == '\0') return true;
+        }
+    }
+    return false;
+}
+
+// is_verdict() for a buffer that is not NUL-terminated (newlib's _write).
+inline bool is_verdict_n(const char* s, std::size_t n) noexcept {
+    static constexpr const char* keys[] = { "RESULT", "FAIL", "FATAL" };
+    for (const char* k : keys) {
+        for (std::size_t i = 0; i < n; ++i) {
+            std::size_t j = 0;
+            while (k[j] && i + j < n && s[i + j] == k[j]) ++j;
+            if (k[j] == '\0') return true;
+        }
+    }
+    return false;
+}
+
+// Whether a console piece goes to semihosting on a board that mirrors only
+// the verdict. A verdict is often printed in pieces ("\nRESULT: ", "PASS",
+// "\n"), so once a piece holding a key is mirrored, the following pieces are
+// mirrored too, up to the end of that line.
+inline bool& verdict_line_open() noexcept {
+    static bool open = false;
+    return open;
+}
+
+inline bool mirror_verdict(const char* s, std::size_t n) noexcept {
+    const bool mirror = verdict_line_open() || is_verdict_n(s, n);
+    if (mirror && n != 0)
+        verdict_line_open() = (s[n - 1] != '\n');
+    return mirror;
+}
+} // namespace detail
+
+class Uart1 {
+public:
+    Uart1() = default;
+    Uart1(const Uart1&) = delete;
+    Uart1& operator=(const Uart1&) = delete;
+
+    void init() noexcept {
+        using namespace bcm;
+        // Disable UART while reconfiguring.
+        mmio_write(pl011::CR, 0x0);
+        // Clear pending interrupts.
+        mmio_write(pl011::ICR, 0x7FF);
+        // 115200 baud @ 48 MHz UART clock: IBRD=26, FBRD=3.
+        mmio_write(pl011::IBRD, 26u);
+        mmio_write(pl011::FBRD, 3u);
+        // 8N1, FIFOs enabled (WLEN=11b<<5, FEN<<4).
+        mmio_write(pl011::LCRH, (3u << 5) | (1u << 4));
+        // Mask all UART interrupts (polled).
+        mmio_write(pl011::IMSC, 0x0);
+        // Enable UART + TX (+ RX).
+        mmio_write(pl011::CR, (1u << 0) | (1u << 8) | (1u << 9));
+        initialized_ = true;
+    }
+
+    void putc(char c) const noexcept {
+        write_raw(c);
+#if PORT_SEMIHOST_MIRROR
+        semihosting::write_char(c);
+#endif
+    }
+
+    void puts(const char* str) const noexcept {
+        for (const char* p = str; *p; ++p) {
+            if (*p == '\n')
+                write_raw('\r');
+            write_raw(*p);
+        }
+#if PORT_SEMIHOST_MIRROR
+        // Whole string in ONE SYS_WRITE0 — far cheaper than a trap per byte.
+        semihosting::write_str(str);
+#elif defined(SEMIHOST)
+        std::size_t n = 0;
+        while (str[n]) ++n;
+        if (detail::mirror_verdict(str, n))
+            semihosting::write_str(str);
+#endif
+    }
+
+    // UART-only output: goes to the PL011 but is NOT mirrored to semihosting.
+    void putc_uart(char c) const noexcept { write_raw(c); }
+
+    void puts_uart(const char* str) const noexcept {
+        for (const char* p = str; *p; ++p) {
+            if (*p == '\n')
+                write_raw('\r');
+            write_raw(*p);
+        }
+    }
+
+private:
+    void write_raw(char c) const noexcept {
+        using namespace bcm;
+        while (mmio_read(pl011::FR) & pl011::FR_TXFF) { /* TX FIFO full */ }
+        mmio_write(pl011::DR, static_cast<std::uint32_t>(static_cast<unsigned char>(c)));
+    }
+
+public:
+
+    // Numbers are formatted into a local buffer and emitted with a SINGLE
+    // puts() (one SYS_WRITE0), never one putc() per digit.
+    void print_dec(std::uint32_t value) const noexcept {
+        char digits[10];
+        int pos = 0;
+        if (value == 0) { digits[pos++] = '0'; }
+        else { while (value > 0) { digits[pos++] = static_cast<char>('0' + (value % 10)); value /= 10; } }
+        char out[11];
+        int n = 0;
+        while (pos > 0) out[n++] = digits[--pos];
+        out[n] = '\0';
+        puts(out);
+    }
+
+    void print_hex(std::uint32_t value, int width = 8) const noexcept {
+        static constexpr char hex_chars[] = "0123456789ABCDEF";
+        if (width < 1) width = 1;
+        if (width > 8) width = 8;
+        char out[9];
+        int n = 0;
+        for (int i = width - 1; i >= 0; --i)
+            out[n++] = hex_chars[(value >> (i * 4)) & 0xF];
+        out[n] = '\0';
+        puts(out);
+    }
+
+    [[nodiscard]] bool is_initialized() const noexcept { return initialized_; }
+
+    const Uart1& operator<<(const char* str) const noexcept { puts(str); return *this; }
+    const Uart1& operator<<(char c) const noexcept { putc(c); return *this; }
+    const Uart1& operator<<(std::uint32_t value) const noexcept { print_dec(value); return *this; }
+    const Uart1& operator<<(int value) const noexcept {
+        // Negate in unsigned to keep INT_MIN well defined.
+        std::uint32_t mag = (value < 0)
+            ? (0u - static_cast<std::uint32_t>(value))
+            : static_cast<std::uint32_t>(value);
+        if (value < 0) putc('-');
+        print_dec(mag);
+        return *this;
+    }
+
+private:
+    bool initialized_ = false;
+};
+
+inline Uart1 uart1;
+inline constexpr const char* endl = "\n";
+
+} // namespace uart

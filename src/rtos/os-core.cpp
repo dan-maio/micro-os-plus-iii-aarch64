@@ -405,7 +405,10 @@ namespace os
     ssize_t
     write (const void* buf, std::size_t nbyte)
     {
-#if defined(SEMIHOST)
+      // A board whose uart.hpp sets PORT_SEMIHOST_MIRROR to 0 keeps its trace
+      // on the UART (the Pi 4 B's hwd image: a semihosting trap costs seconds
+      // on its probe). Every other board mirrors, as before.
+#if defined(SEMIHOST) && (!defined(PORT_SEMIHOST_MIRROR) || PORT_SEMIHOST_MIRROR)
       semihosting::write_buf (reinterpret_cast<const char*> (buf), nbyte);
 #endif
       const char* cbuf = reinterpret_cast<const char*> (buf);

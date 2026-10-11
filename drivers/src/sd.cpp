@@ -23,7 +23,18 @@ namespace sd
 namespace
 {
 
+// The SDHCI the card sits on. A board names it in board.cmake (SD_EMMC_BASE),
+// and may name a different one for its QEMU image (SD_EMMC_BASE_QEMU): the
+// Pi 4 B's card is on EMMC2 (0xFE340000), while QEMU raspi4b plugs its
+// -drive if=sd card into the Arasan SDHCI (0xFE300000). The default is the
+// BCM2837's Arasan SDHCI, which the Zero 2 W and the Pi 3 B use for both.
+#if defined(QEMU_BUILD) && defined(SD_EMMC_BASE_QEMU)
+constexpr std::uint32_t kEmmcBase = SD_EMMC_BASE_QEMU;
+#elif defined(SD_EMMC_BASE)
+constexpr std::uint32_t kEmmcBase = SD_EMMC_BASE;
+#else
 constexpr std::uint32_t kEmmcBase = 0x3F300000u; // bcm::PERIPH_BASE + 0x300000
+#endif
 
 namespace reg
 {

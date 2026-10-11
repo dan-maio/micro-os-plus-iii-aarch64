@@ -57,7 +57,15 @@ int _write (int, const char* buf, int len)
     // in the run log as well as on the serial terminal. Always in addition to
     // the UART, never instead of it.
 #if defined(SEMIHOST)
+#if !defined(PORT_SEMIHOST_MIRROR) || PORT_SEMIHOST_MIRROR
     semihosting::write_buf(buf, static_cast<std::size_t>(len));
+#else
+    // A board that keeps its console off semihosting (uart.hpp sets
+    // PORT_SEMIHOST_MIRROR to 0: the Pi 4 B's hwd image) still hands the
+    // runner its verdict. Each trap halts every core of the SMP group.
+    if (uart::detail::mirror_verdict(buf, static_cast<std::size_t>(len)))
+        semihosting::write_buf(buf, static_cast<std::size_t>(len));
+#endif
 #endif
     for (int i = 0; i < len; ++i)
     {
