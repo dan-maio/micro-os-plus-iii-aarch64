@@ -21,7 +21,7 @@
 # loads the test. So tests can run back to back, without a power cycle.
 #
 # Env:  BUILD=<dir>          the CMake build directory (default: test/build-rpi4b)
-#       UOS_HW_RESET_WAIT=s  seconds after the watchdog reset (default: 15)
+#       UOS_HW_RESET_WAIT=s  seconds after the watchdog reset (default: 10)
 #       UOS_HW_ADAPTER_KHZ   JTAG clock override (the probe, not the clock,
 #                            is the limit: ~0.6 KB/s at any speed)
 # -----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ UOS_HW_NCPU=4 \
 UOS_HW_CORES=0 \
 UOS_HW_SEMIHOST_CORES="0 1 2 3" \
 UOS_HW_TARGET_FMT="bcm2711.cpu%d" \
-UOS_HW_RESET_WAIT="${UOS_HW_RESET_WAIT:-15}" \
+UOS_HW_RESET_WAIT="${UOS_HW_RESET_WAIT:-10}" \
 UOS_HW_IGNORE_ERRORS="${UOS_HW_IGNORE_ERRORS:-JTAG-DP STICKY ERROR|Failed to read memory at 0x80[4-7][0-9a-f]+$}" \
 UOS_HW_PRELOAD="${UOS_HW_PRELOAD:-catch {mww 0xfe100024 0x5a000001}; catch {mww 0xfe10001c 0x5a000020}}" \
 exec "$SMP_DIR/test_smpl/run-hw.sh" "$BUILD/test" "${1:-list}" "${2:-}"

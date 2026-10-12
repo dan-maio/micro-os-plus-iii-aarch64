@@ -17,6 +17,14 @@
  * or "FATAL" -- what test_smpl/run-hw.sh greps in the OpenOCD log -- is
  * mirrored. PORT_SEMIHOST_MIRROR tells src/rtos/os-core.cpp's trace::write()
  * the same thing.
+ *
+ * SEMI_PRINTS=1 (CMake -DSEMI_PRINTS=1, hwd images only) also mirrors the
+ * console lines printed on core 0 through the probe, to measure it under
+ * semihosting load. Only core 0's: OpenOCD (0.12) does not resume a core
+ * other than 0 after a semihosting call on this board, so a line from cores
+ * 1-3 would stop that core. The verdict lines and the kernel trace are
+ * handled exactly as before. The default, SEMI_PRINTS=0, is the verdict-only
+ * board image described above.
  */
 #pragma once
 
@@ -44,9 +52,23 @@
 #define PORT_SEMIHOST_MIRROR 0
 #endif
 
+// 1: on the board, also mirror core 0's console lines (SEMI_PRINTS=1).
+#if defined(SEMIHOST) && defined(HW_BUILD) && defined(SEMI_PRINTS) && SEMI_PRINTS
+#define PORT_SEMI_PRINTS_CORE0 1
+#else
+#define PORT_SEMI_PRINTS_CORE0 0
+#endif
+
 namespace uart {
 
 namespace detail {
+// True on core 0 (MPIDR_EL1.Aff0; the BCM2711 numbers its cores 0-3 there).
+inline bool on_core0() noexcept {
+    std::uint64_t mpidr;
+    asm volatile("mrs %0, mpidr_el1" : "=r"(mpidr));
+    return (mpidr & 0xFFu) == 0;
+}
+
 // True for a line the hardware runner must see: the verdict or a failure.
 inline bool is_verdict(const char* s) noexcept {
     static constexpr const char* keys[] = { "RESULT", "FAIL", "FATAL" };
@@ -119,6 +141,9 @@ public:
         write_raw(c);
 #if PORT_SEMIHOST_MIRROR
         semihosting::write_char(c);
+#elif PORT_SEMI_PRINTS_CORE0
+        if (detail::on_core0())
+            semihosting::write_char(c);
 #endif
     }
 
@@ -136,6 +161,10 @@ public:
         while (str[n]) ++n;
         if (detail::mirror_verdict(str, n))
             semihosting::write_str(str);
+#if PORT_SEMI_PRINTS_CORE0
+        else if (detail::on_core0())
+            semihosting::write_str(str);
+#endif
 #endif
     }
 

@@ -24,6 +24,13 @@
 
 option (UOS_DEBUG_BOOT "Compile the hwd builds with the early-boot markers" OFF)
 
+# SEMI_PRINTS=1 mirrors every console line of the hwd images to semihosting as
+# well as the UART, on a board whose uart.hpp honours it (rpi4b), to load the
+# probe with semihosting traffic. 0, the default, keeps the board's own rule
+# (on rpi4b: only the verdict lines). The qemu images always mirror.
+set (SEMI_PRINTS 0 CACHE STRING "hwd builds: mirror all console output to semihosting (0/1)")
+set_property (CACHE SEMI_PRINTS PROPERTY STRINGS 0 1)
+
 # UOS_BOARD_SRC_DIR is where the board's CODE is, and two boards may share it:
 # rpi3b compiles rpi-zero-2w's src/ and include/ with -DBOARD_RPI3B, exactly as
 # the predecessor's `make BOARD=rpi3b` did.
@@ -216,7 +223,7 @@ foreach (_dir IN LISTS _test_dirs)
       # DEBUG_BOOT is opt-in: every early-boot marker is a semihosting trap,
       # and under a JTAG probe each one costs real time. Turn it on only when
       # bringing a board up.
-      set (_variant_defines HW_BUILD)
+      set (_variant_defines HW_BUILD SEMI_PRINTS=${SEMI_PRINTS})
       if (UOS_DEBUG_BOOT)
         list (APPEND _variant_defines DEBUG_BOOT)
       endif ()
