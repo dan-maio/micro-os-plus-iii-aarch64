@@ -94,6 +94,39 @@ alignas(4096) std::uint64_t l3_dwt[512];   // 0xE0000000 .. 0xE01FFFFF
 alignas(4096) std::uint32_t dwt_page[1024];
 #endif
 
+#if defined(UOS_SMP_MEM_TEST)
+// smp_mem_test allocates blocks of up to 0.5 GB from the RAM above the first
+// GB, which no other image uses. Only its image defines UOS_SMP_MEM_TEST
+// (test/rpi4b/tests.cmake); every other test's tables are unchanged.
+//
+// The region is described down to 4 KB pages (one L3 table per 2 MB), and
+// every page starts INVALID: the test maps a block's pages when it allocates
+// the block and unmaps them when it frees it (mmu_hi_map). An access to a free
+// page, to the guard page after a block, or to a block already freed then
+// faults instead of silently corrupting a neighbour.
+//
+// Hardware: 0x40000000 .. 0xFBFFFFFF, the 4 GB board's RAM up to the devices
+// (3008 MB, 1504 L3 tables = 5.9 MB of .bss). QEMU raspi4b has 2 GB of RAM:
+// 0x40000000 .. 0x7FFFFFFF (1024 MB, 512 tables).
+constexpr std::uint64_t HI_BASE = 1ULL * BLOCK_1G;            // 0x40000000
+#if defined(QEMU_BUILD)
+constexpr std::uint64_t HI_END  = 2ULL * BLOCK_1G;            // 0x80000000
+#else
+constexpr std::uint64_t HI_END  = DEVICE_START;               // 0xFC000000
+#endif
+constexpr std::size_t   HI_TABLES = (HI_END - HI_BASE) / BLOCK_2M;
+constexpr std::uint64_t PAGE_4K   = 4096;
+constexpr std::uint64_t PTE_L3_PAGE = (1ULL << 1);            // at L3: page
+
+alignas(4096) std::uint64_t l2_hi[2][512]; // 0x40000000 .. 0xBFFFFFFF
+alignas(4096) std::uint64_t l3_hi[HI_TABLES][512];
+
+std::uint64_t* l2_for(std::uint64_t va) noexcept {
+    const std::uint64_t gb = va >> 30;   // 1, 2 or 3
+    return (gb == 3) ? &l2_high[0] : &l2_hi[gb - 1][0];
+}
+#endif
+
 std::uint64_t make_block(std::uint64_t pa, std::uint64_t attr_idx,
                          std::uint64_t sh) noexcept {
     return pa | PTE_VALID | PTE_BLOCK | PTE_AF | attr_idx | sh;
@@ -128,6 +161,22 @@ void build_tables() noexcept {
         | PTE_AF | ATTR_IDX_NORMAL | PTE_SH_IS;
     l2_high[(DWT_BASE >> 21) & 0x1FF] =
         reinterpret_cast<std::uint64_t>(&l3_dwt[0]) | PTE_VALID | PTE_TABLE;
+#endif
+
+#if defined(UOS_SMP_MEM_TEST)
+    // Each 2 MB of the high region -> its own L3 table, all pages invalid
+    // (.bss). The L2 tables of the 2nd and 3rd GB hold only these pointers;
+    // in the 4th GB they sit below the device window built above.
+    for (std::size_t i = 0; i < 512; ++i) { l2_hi[0][i] = 0; l2_hi[1][i] = 0; }
+    for (std::size_t t = 0; t < HI_TABLES; ++t) {
+        const std::uint64_t va = HI_BASE + static_cast<std::uint64_t>(t) * BLOCK_2M;
+        l2_for(va)[(va >> 21) & 0x1FF] =
+            reinterpret_cast<std::uint64_t>(&l3_hi[t][0]) | PTE_VALID | PTE_TABLE;
+    }
+    l1[1] = reinterpret_cast<std::uint64_t>(&l2_hi[0][0]) | PTE_VALID | PTE_TABLE;
+    if (HI_END > 2ULL * BLOCK_1G) {
+        l1[2] = reinterpret_cast<std::uint64_t>(&l2_hi[1][0]) | PTE_VALID | PTE_TABLE;
+    }
 #endif
 
     l1[0] = reinterpret_cast<std::uint64_t>(&l2_low[0])  | PTE_VALID | PTE_TABLE;
@@ -188,6 +237,17 @@ extern "C" void mmu_init(void) {
     for (std::uintptr_t a = reinterpret_cast<std::uintptr_t>(&l2_high[0]);
          a < reinterpret_cast<std::uintptr_t>(&l2_high[0]) + sizeof(l2_high); a += 64)
         __asm__ volatile("dc cvac, %0" :: "r"(a) : "memory");
+#if defined(UOS_SMP_MEM_TEST)
+    // The L3 tables are written through the caches later (mmu_hi_map); clean
+    // AND invalidate them now, so no stale line from before the reset can be
+    // written back over an entry.
+    for (std::uintptr_t a = reinterpret_cast<std::uintptr_t>(&l2_hi[0][0]);
+         a < reinterpret_cast<std::uintptr_t>(&l2_hi[0][0]) + sizeof(l2_hi); a += 64)
+        __asm__ volatile("dc civac, %0" :: "r"(a) : "memory");
+    for (std::uintptr_t a = reinterpret_cast<std::uintptr_t>(&l3_hi[0][0]);
+         a < reinterpret_cast<std::uintptr_t>(&l3_hi[0][0]) + sizeof(l3_hi); a += 64)
+        __asm__ volatile("dc civac, %0" :: "r"(a) : "memory");
+#endif
     __asm__ volatile("dsb sy" ::: "memory");
     enable_on_this_core();
 }
@@ -195,3 +255,49 @@ extern "C" void mmu_init(void) {
 extern "C" void mmu_enable(void) {
     enable_on_this_core();
 }
+
+#if defined(UOS_SMP_MEM_TEST)
+extern "C" void mmu_hi_region(std::uintptr_t* base, std::uintptr_t* end) {
+    *base = HI_BASE;
+    *end  = HI_END;
+}
+
+// Map (Normal WB, Inner-Shareable, never executable) or unmap the 4 KB pages
+// of [va, va + bytes). va and bytes are page multiples inside the region.
+// The walker reads the tables through the caches (TCR IRGN/ORGN WB, SH IS),
+// so a DSB is enough to publish the entries. Invalid -> valid needs no TLB
+// maintenance (an invalid entry is never cached in a TLB); valid -> invalid
+// must drop the old translations from every core's TLB before the pages are
+// handed to another block.
+extern "C" void mmu_hi_map(std::uintptr_t va, std::size_t bytes, int map) {
+    for (std::uint64_t a = va; a < va + bytes; a += PAGE_4K) {
+        const std::uint64_t off = a - HI_BASE;
+        l3_hi[off / BLOCK_2M][(off / PAGE_4K) & 0x1FF] = map
+            ? (a | PTE_VALID | PTE_L3_PAGE | PTE_AF | ATTR_IDX_NORMAL | PTE_SH_IS
+                 | PTE_PXN | PTE_UXN)
+            : 0;
+    }
+    __asm__ volatile("dsb ishst" ::: "memory");
+    if (!map) {
+        __asm__ volatile("tlbi vmalle1is" ::: "memory");
+        __asm__ volatile("dsb ish" ::: "memory");
+    }
+    __asm__ volatile("isb" ::: "memory");
+}
+
+// 1 when a read of va translates (the page is mapped), 0 when it would fault.
+// AT S1E1R asks the MMU without touching the memory, so a guard page can be
+// checked without taking an abort. PAR_EL1 is per core and not part of a
+// thread's context: interrupts are masked so no switch lands between the AT
+// and the read of its result.
+extern "C" int mmu_hi_probe(std::uintptr_t va) {
+    std::uint64_t daif, par;
+    __asm__ volatile("mrs %0, daif" : "=r"(daif));
+    __asm__ volatile("msr daifset, #3" ::: "memory");
+    __asm__ volatile("at s1e1r, %0" :: "r"(va) : "memory");
+    __asm__ volatile("isb" ::: "memory");
+    __asm__ volatile("mrs %0, par_el1" : "=r"(par));
+    __asm__ volatile("msr daif, %0" :: "r"(daif) : "memory");
+    return (par & 1) ? 0 : 1;
+}
+#endif

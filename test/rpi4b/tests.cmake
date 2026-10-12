@@ -23,6 +23,11 @@ function (board_test_defines _app _out)
     # DWT (mmu.cpp), and routes SGI 1, its stand-in for NVIC IRQ 0, to its
     # handler (rtos/port_isr.cpp). Every other test's image is unchanged.
     list (APPEND _d UOS_CMSIS_OS_VALIDATOR)
+  elseif (_app STREQUAL "smp_mem_test")
+    # For its image only, the board maps the RAM above the first GB page by
+    # page, every page invalid until the test maps a block it allocates
+    # (boards/rpi4b/src/mmu.cpp, include/mmu_hi.hpp).
+    list (APPEND _d UOS_SMP_MEM_TEST)
   endif ()
   set (${_out} "${_d}" PARENT_SCOPE)
 endfunction ()
