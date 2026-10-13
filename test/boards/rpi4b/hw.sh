@@ -22,8 +22,10 @@
 #
 # Env:  BUILD=<dir>          the CMake build directory (default: test/build-rpi4b)
 #       UOS_HW_RESET_WAIT=s  seconds after the watchdog reset (default: 10)
-#       UOS_HW_ADAPTER_KHZ   JTAG clock override (the probe, not the clock,
-#                            is the limit: ~0.6 KB/s at any speed)
+#       UOS_HW_ADAPTER_KHZ   JTAG clock override. With a CPU bit-banging probe
+#                            the USB round trip, not the clock, is the limit;
+#                            with the PIO probe firmware (JTAGprobe_smp_pio)
+#                            10000-15000 loads ~1.2x faster than 4000
 # -----------------------------------------------------------------------------
 set -uo pipefail
 
