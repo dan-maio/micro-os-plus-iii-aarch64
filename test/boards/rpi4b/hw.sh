@@ -36,9 +36,18 @@ BUILD="${BUILD:-$ROOT/test/build-rpi4b}"
 CFG="$HERE/openocd-cmsis-dap-rpi4b.cfg"
 
 TC="$(ls -d "$HOME"/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.*/.content/bin 2>/dev/null | sort -V | tail -1)"
-SMP_DIR="${UOS_SMP_DIR:-$(cd "$ROOT/.." && pwd)/micro-os-plus-iii-smp}"
-[ -d "$SMP_DIR" ] || SMP_DIR="$SMP_DIR.git"
-[ -d "$SMP_DIR" ] || SMP_DIR="$(cd "$ROOT/.." && pwd)/micro-os-plus-iii"
+# The kernel is the sibling micro-os-plus-iii (the smp branch of
+# micro-os-plus-iii-smp.git); an older workspace may keep it as
+# micro-os-plus-iii-smp, or as a `*.git` working copy of either name.
+_siblings="$(cd "$ROOT/.." && pwd)"
+SMP_DIR="${UOS_SMP_DIR:-}"
+if [[ -z "$SMP_DIR" ]]; then
+  for _d in micro-os-plus-iii micro-os-plus-iii.git \
+            micro-os-plus-iii-smp micro-os-plus-iii-smp.git; do
+    if [[ -d "$_siblings/$_d" ]]; then SMP_DIR="$_siblings/$_d"; break; fi
+  done
+  SMP_DIR="${SMP_DIR:-$_siblings/micro-os-plus-iii}"
+fi
 
 # The facts:
 #   * entry 0x80000, where the AArch64 image is linked;
