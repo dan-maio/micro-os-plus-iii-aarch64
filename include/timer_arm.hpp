@@ -45,6 +45,16 @@ inline std::uint32_t get_ctl() noexcept {
     return static_cast<std::uint32_t>(ctl);
 }
 
+inline void set_cval(std::uint64_t cval) noexcept {
+    __asm__ volatile("msr cntp_cval_el0, %0" : : "r"(cval) : "memory");
+}
+
+inline std::uint64_t get_cval() noexcept {
+    std::uint64_t cval;
+    __asm__ volatile("mrs %0, cntp_cval_el0" : "=r"(cval) : : "memory");
+    return cval;
+}
+
 /* 64-bit physical count (for high-resolution timing in demos). */
 inline std::uint64_t get_count() noexcept {
     std::uint64_t cnt;
@@ -52,9 +62,23 @@ inline std::uint64_t get_count() noexcept {
     return cnt;
 }
 
+// Calibrates the counter's frequency (once: later calls, from the other
+// cores, keep the first result, so cycles_per_tick never changes).
 void init() noexcept;
 
+// Starts this core's 1 ms tick on an absolute grid: compare = start + k * period.
 void start_1ms() noexcept;
+
+// In the tick interrupt: the next compare one period after the last one (not
+// one period from now, which would add the interrupt's latency to every
+// tick and make the kernel's clocks lose time). A tick that comes late is
+// caught up: the compare is already due and the interrupt fires again.
+void rearm_1ms() noexcept;
+
+// The counter's value when core 0 started its tick: the origin of the
+// kernel's hrclock, so hrclock.now() (count - origin) and the clock's own
+// tick-driven count (ticks * cycles_per_tick) agree at every tick.
+std::uint64_t hr_base() noexcept;
 
 std::uint32_t frequency() noexcept;
 

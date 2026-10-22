@@ -86,8 +86,7 @@ extern "C" uint64_t * port_isr_handler(uint64_t *current_sp)
 
   if (intid == gic::INTID_TIMER_PNS)
     {
-      uint32_t freq = timer_arm::frequency();
-      timer_arm::set_tval(freq / 1000);
+      timer_arm::rearm_1ms();  // absolute: no drift
 
       _port_core_alive[cpu] = 1;
 

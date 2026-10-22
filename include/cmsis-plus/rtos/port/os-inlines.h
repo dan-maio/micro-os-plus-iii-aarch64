@@ -299,7 +299,9 @@ namespace os
       inline uint64_t __attribute__ ((always_inline))
       clock_highres::hardware_counter (void) noexcept
       {
-        return timer_arm::get_count ();
+        // From core 0's tick origin, so that it agrees with the tick-driven
+        // count the kernel compares hrclock timestamps with.
+        return timer_arm::get_count () - timer_arm::hr_base ();
       }
 
       inline uint32_t __attribute__ ((always_inline))

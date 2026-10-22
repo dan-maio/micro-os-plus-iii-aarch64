@@ -15,7 +15,7 @@
 # left there, and the Pi has no SRST a script can drive.
 #
 # Env:  BUILD=<dir>   the CMake build directory   (default: test/build)
-#       PROBE=jlink | olimex                      (default: jlink)
+#       PROBE=jlink | olimex | cmsis-dap          (default: jlink)
 # -----------------------------------------------------------------------------
 set -uo pipefail
 
@@ -27,7 +27,8 @@ PROBE="${PROBE:-jlink}"
 case "$PROBE" in
   jlink)  CFG="$HERE/openocd-jlink-rpi3.cfg" ;;
   olimex) CFG="$HERE/openocd-olimex.cfg" ;;
-  *) echo "hw.sh: PROBE must be jlink or olimex, not '$PROBE'" >&2; exit 2 ;;
+  cmsis-dap) CFG="$HERE/openocd-cmsisdap-rpi3.cfg" ;;
+  *) echo "hw.sh: PROBE must be jlink, olimex or cmsis-dap, not '$PROBE'" >&2; exit 2 ;;
 esac
 
 TC="$(ls -d "$HOME"/.local/xPacks/@xpack-dev-tools/aarch64-none-elf-gcc/15.*/.content/bin 2>/dev/null | sort -V | tail -1)"

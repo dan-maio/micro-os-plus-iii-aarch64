@@ -12,6 +12,9 @@ namespace timer_arm {
 
 namespace {
 volatile std::uint32_t g_freq = 0;
+volatile std::uint32_t g_period = 0;  // cycles per 1 ms tick
+volatile std::uint64_t g_base = 0;    // core 0's tick origin
+volatile bool g_base_set = false;
 
 std::uint32_t st_clo() noexcept {
     return *reinterpret_cast<volatile std::uint32_t*>(BCM2837_ST_BASE + BCM2837_ST_CLO);
@@ -42,16 +45,48 @@ std::uint32_t frequency() noexcept {
 }
 
 void init() noexcept {
-    g_freq = calibrate_hw_freq();
-    if (g_freq == 0u) {
-        g_freq = get_freq();
+    if (g_freq != 0u) {
+        return;  // calibrated by the first core; keep it
     }
+    // CNTFRQ is the counter's nominal frequency, exact when the firmware set
+    // it; the calibration against the System Timer (a 50 ms window, off by
+    // a few hundred ppm) only guards against a CNTFRQ left unset or wrong.
+    const std::uint32_t cal = calibrate_hw_freq();
+    const std::uint32_t reg = get_freq();
+    std::uint32_t f = cal;
+    if (reg != 0u && (cal == 0u || (reg > cal ? reg - cal : cal - reg) < cal / 100u)) {
+        f = reg;
+    }
+    if (f == 0u) {
+        f = reg;
+    }
+    g_freq = f;
 }
 
 void start_1ms() noexcept {
-    std::uint32_t freq = frequency();
-    set_tval(freq / 1000);
+    g_period = frequency() / 1000;
+    const std::uint64_t now = get_count();
+    if (!g_base_set) {  // core 0, first: the hrclock origin
+        g_base = now;
+        g_base_set = true;
+    }
+    set_cval(now + g_period);
     set_ctl(0x1);  // ENABLE=1, IMASK=0
+}
+
+void rearm_1ms() noexcept {
+    std::uint64_t next = get_cval() + g_period;
+    // Far behind (a core halted by the debugger): resynchronise rather than
+    // replay thousands of ticks.
+    const std::uint64_t now = get_count();
+    if (now > next + 1000ull * g_period) {
+        next = now + g_period;
+    }
+    set_cval(next);
+}
+
+std::uint64_t hr_base() noexcept {
+    return g_base;
 }
 
 } // namespace timer_arm
