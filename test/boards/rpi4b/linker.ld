@@ -75,17 +75,26 @@ SECTIONS
         __irq_stack_top = .;
     } > RAM
 
-    /* --- Per-core stacks (single SP_EL1 each) --- */
-    .stack (NOLOAD) : ALIGN(16) {
-        . = . + STACK_SIZE;   __stack_top = .;
+    /* Per-core stacks (single SP_EL1 each), each top on a cache line (64
+       bytes), and a guard line after core 3's: no stack may share a cache
+       line with the heap. A secondary core starts with its MMU and caches
+       off, so its first frames (bl mmu_enable, bl boot_coreN) go straight
+       to RAM; core 0, with caches on, may hold that line dirty, with the
+       RAM's older bytes, if the heap's first chunk is in it -- and once the
+       core turns its caches on, its `ret` reads core 0's stale copy and
+       jumps to garbage (seen on the Zig port of this board: a PC alignment
+       fault on core 3). */
+    .stack (NOLOAD) : ALIGN(64) {
+        . = . + STACK_SIZE; . = ALIGN(64);   __stack_top = .;
         _stack_top = __stack_top;
-        . = . + W_STACK_SIZE; __stack_top_core1 = .;
-        . = . + W_STACK_SIZE; __stack_top_core2 = .;
-        . = . + W_STACK_SIZE; __stack_top_core3 = .;
+        . = . + W_STACK_SIZE; . = ALIGN(64); __stack_top_core1 = .;
+        . = . + W_STACK_SIZE; . = ALIGN(64); __stack_top_core2 = .;
+        . = . + W_STACK_SIZE; . = ALIGN(64); __stack_top_core3 = .;
+        . = . + 64;           /* the guard line */
     } > RAM
 
     /* Heap (µOS++ free store) */
-    .heap (NOLOAD) : ALIGN(16) {
+    .heap (NOLOAD) : ALIGN(4096) {
         _Heap_Begin = .;
         __heap_start = .;
         . = . + HEAP_SIZE;
