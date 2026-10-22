@@ -12,7 +12,8 @@
 # usb_test, its USB-C DWC2 is not the BCM2837's and the type-A ports sit
 # behind the VL805 host controller).
 set (BOARD_TEST_NEED_DEVICES
-     sd_test smp-mat-sdcard-test smp-num-test smp-pipeline-test)
+     sd_test smp-mat-sdcard-test smp-num-test smp-pipeline-test
+     smp-shapes-test)
 
 # Per-test -D flags, carried over from the per-test Makefiles.
 function (board_test_defines _app _out)
