@@ -5,6 +5,8 @@
 
 #include <timer_arm.hpp>
 
+extern "C" unsigned port_cpu_id(void);
+
 #define BCM2837_ST_BASE 0x3F003000u
 #define BCM2837_ST_CLO  0x04u
 
@@ -76,11 +78,19 @@ void start_1ms() noexcept {
 
 void rearm_1ms() noexcept {
     std::uint64_t next = get_cval() + g_period;
-    // Far behind (a core halted by the debugger): resynchronise rather than
-    // replay thousands of ticks.
+    // Far behind (a core halted by the debugger, or by a slow semihosting
+    // call: the counter keeps running): resynchronise rather than replay
+    // thousands of ticks. The ticks skipped on core 0 are kernel time that
+    // never happened, so hrclock's origin moves with them; otherwise
+    // hrclock.now() would stay that far ahead of the steady count its sleeps
+    // compare with (seen on the Lyra, AArch32: 8.9 s).
     const std::uint64_t now = get_count();
     if (now > next + 1000ull * g_period) {
-        next = now + g_period;
+        const std::uint64_t skipped = (now + g_period - next) / g_period;
+        next += skipped * g_period;
+        if (port_cpu_id() == 0u) {
+            g_base += skipped * g_period;
+        }
     }
     set_cval(next);
 }
