@@ -50,6 +50,12 @@ namespace os
           return locked (state::unlocked);
         }
 
+        inline port::scheduler::state_t __attribute__ ((always_inline))
+        kernel_lock (void)
+        {
+          return kernel_locked (state::locked);
+        }
+
         inline unsigned __attribute__ ((always_inline))
         port_cpu_id_inline (void)
         {
@@ -63,7 +69,11 @@ namespace os
         {
           uint64_t daif;
           __asm__ volatile("mrs %0, daif\n msr daifset, #2" : "=r"(daif) :: "memory");
-          bool res = (lock_state[port_cpu_id_inline()] != state::unlocked);
+          // Locked for a switch: the application's scheduler lock, or a
+          // kernel critical section.
+          const unsigned cpu = port_cpu_id_inline ();
+          bool res = (lock_state[cpu] != state::unlocked
+                      || kernel_lock_state[cpu] != state::unlocked);
           if (!(daif & (1ULL << 7)))
             __asm__ volatile("msr daifclr, #2" ::: "memory");
           return res;

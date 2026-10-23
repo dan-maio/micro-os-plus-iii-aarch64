@@ -84,6 +84,14 @@ namespace os
       namespace scheduler
       {
         volatile state_t lock_state[OS_NCPU];
+        volatile state_t kernel_lock_state[OS_NCPU];
+
+        // A switch asked for while this core was locked (reschedule() under
+        // the scheduler lock or the kernel's section: a thread made ready,
+        // a priority dropped), done when the last lock is released. Apart
+        // from _port_ctx_pending, the tick's time-slice request, which keeps
+        // its own rules.
+        static volatile bool resched_pending[OS_NCPU];
 
         result_t
         initialize (void)
@@ -107,7 +115,11 @@ namespace os
           rtos::scheduler::current_thread_[cpu0] = pth;
 
           for (unsigned c = 0; c < OS_NCPU; ++c)
-            lock_state[c] = state::init;
+            {
+              lock_state[c] = state::init;
+              kernel_lock_state[c] = state::init;
+              resched_pending[c] = false;
+            }
 
           os::rtos::scheduler::os_idle_thread_core[0] = ::os_idle_thread;
 
@@ -119,59 +131,109 @@ namespace os
           }
         }
 
+        // The kernel's own critical section: the interrupt critical section
+        // (interrupts masked on this core, the kernel spinlock held), so
+        // that the kernel's shared data (the heap, the objects' internals) is
+        // safe from this core's ISRs and from the other cores, plus a
+        // per-core flag, so that scheduler::locked() is true inside it (no
+        // switch, no blocking call). Nested sections enter the interrupt
+        // section once; the outer one restores its state. This is what the
+        // scheduler lock used to be.
+        static rtos::interrupts::state_t kernel_irq_state[OS_NCPU];
+
         state_t
-        locked (state_t state)
+        kernel_locked (state_t state)
         {
           os_assert_throw (!interrupts::in_handler_mode (), EPERM);
 
           if (state == state::locked)
             {
-              __asm__ volatile("msr daifset, #2" ::: "memory");
-              unsigned cpu = port_cpu_id();
-              state_t tmp = lock_state[cpu];
-              if (tmp != state::locked)
+              const rtos::interrupts::state_t irq = interrupts::critical_section::enter ();
+              const unsigned cpu = port_cpu_id ();
+              const state_t prev = kernel_lock_state[cpu];
+              if (prev == state::locked)
+                interrupts::critical_section::exit (irq); // nested: already held
+              else
                 {
-                  if (_smp_klock.owner != cpu)
-                    {
-                      _smp_klock_raw_acquire();
-                      _smp_klock.owner = cpu;
-                    }
-                  _smp_klock.depth = _smp_klock.depth + 1;
-                  lock_state[cpu] = state::locked;
+                  kernel_irq_state[cpu] = irq;
+                  kernel_lock_state[cpu] = state::locked;
                 }
-              return tmp;
+              return prev;
             }
           else
             {
-              unsigned cpu = port_cpu_id();
-              state_t tmp = lock_state[cpu];
-              if (tmp != state::unlocked)
+              const unsigned cpu = port_cpu_id ();
+              const state_t prev = kernel_lock_state[cpu];
+              if (prev == state::locked)
                 {
-                  lock_state[cpu] = state::unlocked;
-                  if (_smp_klock.owner == cpu && _smp_klock.depth > 0)
+                  kernel_lock_state[cpu] = state::unlocked;
+                  // A switch asked for inside (a thread made ready by an
+                  // unlock, a signal) is done now, as at the scheduler
+                  // unlock, not at the next tick.
+                  bool switch_now = false;
+                  if (lock_state[cpu] != state::locked && resched_pending[cpu]
+                      && rtos::scheduler::started ())
                     {
-                      uint32_t d = _smp_klock.depth - 1;
-                      _smp_klock.depth = d;
-                      if (d == 0)
-                        {
-                          _smp_klock.owner = SMP_NO_OWNER;
-                          _smp_klock_raw_release();
-                        }
+                      resched_pending[cpu] = false;
+                      switch_now = true;
                     }
-                  __asm__ volatile("msr daifclr, #2" ::: "memory");
+                  interrupts::critical_section::exit (kernel_irq_state[cpu]);
+                  if (switch_now)
+                    reschedule ();
                 }
-              return tmp;
+              return prev;
             }
+        }
+
+        // The application's scheduler lock, the classic one: this core's
+        // thread switches stop, nothing else does -- interrupts stay as they
+        // are and no spinlock is held, so ISRs keep running and the other
+        // cores are not affected. A switch an ISR asked for meanwhile
+        // (_port_ctx_pending) is done when the lock is released.
+        state_t
+        locked (state_t state)
+        {
+          os_assert_throw (!interrupts::in_handler_mode (), EPERM);
+
+          uint64_t daif;
+          __asm__ volatile("mrs %0, daif\n msr daifset, #2" : "=r"(daif) :: "memory");
+          const unsigned cpu = port_cpu_id ();
+          const state_t prev = lock_state[cpu];
+          lock_state[cpu] = state;
+          bool switch_now = false;
+          if (prev == state::locked && state != state::locked
+              && kernel_lock_state[cpu] != state::locked && cpu < OS_NCPU
+              && (_port_ctx_pending[cpu] != 0 || resched_pending[cpu])
+              && rtos::scheduler::started ())
+            {
+              _port_ctx_pending[cpu] = 0;
+              resched_pending[cpu] = false;
+              switch_now = true;
+            }
+          if (!(daif & (1ULL << 7)))
+            __asm__ volatile("msr daifclr, #2" ::: "memory");
+          if (switch_now)
+            reschedule ();
+          return prev;
         }
 
         void
         reschedule (void)
         {
           unsigned cpu = port_cpu_id();
-          if (rtos::scheduler::locked ()
-              || (rtos::interrupts::in_handler_mode ()
-                  && !rtos::scheduler::preemptive ()))
+          if (rtos::interrupts::in_handler_mode ()
+              && !rtos::scheduler::preemptive ())
             {
+              return;
+            }
+          // Locked (the scheduler lock or the kernel's section): the switch
+          // is remembered, and done when the lock is released.
+          if (rtos::scheduler::locked ())
+            {
+              if (cpu < OS_NCPU)
+                {
+                  resched_pending[cpu] = true;
+                }
               return;
             }
 

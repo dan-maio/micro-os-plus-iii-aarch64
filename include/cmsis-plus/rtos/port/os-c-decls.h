@@ -47,6 +47,12 @@ typedef struct {
 } os_port_smp_tlock_t;
 
 #define SMP_NO_OWNER  0xFFFFFFFFu
+
+/* This port keeps the kernel's own critical section (interrupts masked on
+ * the core, the kernel spinlock held: port::scheduler::kernel_lock()) apart
+ * from the application's scheduler lock, which only stops this core's
+ * thread switches -- interrupts stay on, no spinlock is held. */
+#define OS_HAS_PORT_KERNEL_LOCK 1
 /* OS_NCPU and OS_SMP_IPI_SGI are BOARD facts and have no default here, for the
  * same reason the AArch32 port removed them: a silent OS_NCPU=4 would give a
  * board whose build forgot to say a different scheduler, and OS_SMP_IPI_SGI=0
