@@ -27,11 +27,12 @@ static constexpr unsigned NWORK = 8;
 // both write to the (non-reentrant) UART from different cores.
 static mutex g_con { "con" };
 static volatile std::uint32_t hist[NWORK][OS_NCPU] = {};
+static volatile bool g_running = true;
 
 static void* worker (void* arg)
 {
   unsigned id = (unsigned)(std::uintptr_t)arg;
-  for (;;)
+  while (g_running)
   {
     unsigned c = port_cpu_id();
     if (c < OS_NCPU) hist[id][c]++;
@@ -46,19 +47,22 @@ static void* worker (void* arg)
 static void* reporter (void*)
 {
   bool s = false;
-  for (;;)
+  while (g_running)
   {
     s = !s; led::set(s);
     g_con.lock();
-    for (unsigned w = 0; w < NWORK; ++w)
+    if (g_running)
     {
-      uart::uart1 << "w" << (int)w << " [";
-      for (unsigned c = 0; c < OS_NCPU; ++c)
-        uart::uart1 << " c" << (int)c << "=" << hist[w][c];
-      uart::uart1 << " ]\n";
+      for (unsigned w = 0; w < NWORK; ++w)
+      {
+        uart::uart1 << "w" << (int)w << " [";
+        for (unsigned c = 0; c < OS_NCPU; ++c)
+          uart::uart1 << " c" << (int)c << "=" << hist[w][c];
+        uart::uart1 << " ]\n";
+      }
+      uart::uart1 << "-- reporter on c" << (int)port_cpu_id()
+                  << " t=" << (std::uint32_t)sysclock.now() << "ms --\n";
     }
-    uart::uart1 << "-- reporter on c" << (int)port_cpu_id()
-                << " t=" << (std::uint32_t)sysclock.now() << "ms --\n";
     g_con.unlock();
     sysclock.sleep_for(1000);
   }
@@ -154,6 +158,8 @@ int os_main (int, char*[])
           ok = false;
         }
     }
+  g_running = false;
+  sysclock.sleep_for(50);
   // Under the console mutex, so the marker a runner greps for is never
   // interleaved with a reporter line. Single puts() = single SYS_WRITE0.
   g_con.lock();
