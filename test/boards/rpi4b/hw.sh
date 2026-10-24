@@ -26,6 +26,8 @@
 #                            the USB round trip, not the clock, is the limit;
 #                            with the PIO probe firmware (JTAGprobe_smp_pio)
 #                            10000-15000 loads ~1.2x faster than 4000
+#       UOS_HW_ADAPTER_SERIAL  the probe's serial number, when the host has more
+#                            than one CMSIS-DAP probe (unset: the first found)
 # -----------------------------------------------------------------------------
 set -uo pipefail
 
