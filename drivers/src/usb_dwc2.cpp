@@ -19,10 +19,27 @@
 
 #include <cmsis-plus/rtos/os.h>
 
+#if defined(SOC_BCM2711)
+// The Raspberry Pi 4 B: the core behind the USB-C socket, its interrupt a
+// GIC-400 shared peripheral interrupt (INTID 105), routed to core 0.
+#include "bcm2711.hpp"
+#include "gic400.hpp"
+#else
 #include "bcm2837.hpp"
 #include "bcm_irq.hpp"
+#endif
 #include "mailbox.hpp"
 #include "usb_dwc2.hpp"
+
+// The device's identity. The defaults are the Linux Foundation's test range
+// (rpi-zero-2w/usb_test, host_xfer.py); an application that serves another
+// host tool defines its own.
+#if !defined(USB_DWC2_VID)
+#define USB_DWC2_VID 0x1d6bu
+#endif
+#if !defined(USB_DWC2_PID)
+#define USB_DWC2_PID 0x0104u
+#endif
 
 extern "C" unsigned port_cpu_id (void);
 
@@ -221,7 +238,7 @@ bool g_setup_pending = false;
 // raises XFERCOMPL, before the SETUP-phase-done interrupt: that completion
 // must not be taken for the end of a status stage (the re-arm it caused left
 // EP0 OUT disabled under load, the next SETUP stuck in the RX FIFO, and the
-// host timing out -- found on the Pi 4 by the golden workspace's tutorial).
+// host timing out -- found on the Pi 4, the tutorial's capstone).
 enum class Ep0Out { setup, status };
 Ep0Out g_ep0_out = Ep0Out::setup;
 
@@ -465,7 +482,8 @@ ep0_send (const void* data, std::uint32_t len) noexcept
 constexpr std::uint8_t kDeviceDesc[] = {
   18,   0x01, 0x00, 0x02,       // bLength, DEVICE, bcdUSB 2.00
   0xFF, 0x00, 0x00, 64,         // class 0xFF/0/0, bMaxPacketSize0
-  0x6B, 0x1D, 0x04, 0x01,       // idVendor 0x1d6b, idProduct 0x0104
+  USB_DWC2_VID & 0xFFu, (USB_DWC2_VID >> 8) & 0xFFu,  // idVendor
+  USB_DWC2_PID & 0xFFu, (USB_DWC2_PID >> 8) & 0xFFu,  // idProduct
   0x00, 0x01,                   // bcdDevice 1.00
   1,    2,    3,                // iManufacturer/iProduct/iSerialNumber
   1                             // bNumConfigurations
@@ -1106,8 +1124,12 @@ init () noexcept
 
   // Order matters: route and enable the IRQ, then global enable, then release
   // the soft disconnect, so the host cannot enumerate into an unwired core.
+#if defined(SOC_BCM2711)
+  gic::enable_spi (bcm::INTID_USB);
+#else
   bcm_irq::route_gpu_irqs_to_core (0u);
   bcm_irq::enable_gpu_irq (bcm::IRQ_USB);
+#endif
 
   setb (reg::GAHBCFG, bit::GINT_GLBL | bit::DMAEN);
 
@@ -1233,8 +1255,10 @@ ep_read (void* buf, std::uint32_t len) noexcept
   return static_cast<int> (done);
 }
 
+namespace
+{
 int
-ep_write (const void* buf, std::uint32_t len) noexcept
+ep_write_ (const void* buf, std::uint32_t len, bool zlp) noexcept
 {
   if (!g_configured)
     {
@@ -1260,7 +1284,7 @@ ep_write (const void* buf, std::uint32_t len) noexcept
 
   // An exact multiple of wMaxPacketSize needs a zero-length packet, or the
   // host's libusb read blocks until its timeout instead of completing.
-  if (len != 0u && (len % kMpsHs) == 0u)
+  if (zlp && len != 0u && (len % kMpsHs) == 0u)
     {
       g_in_done = false;
       program_bulk_in (p, 0u);
@@ -1271,13 +1295,29 @@ ep_write (const void* buf, std::uint32_t len) noexcept
     }
   return static_cast<int> (done);
 }
+} // namespace
+
+int
+ep_write (const void* buf, std::uint32_t len) noexcept
+{
+  return ep_write_ (buf, len, true);
+}
+
+int
+ep_write_stream (const void* buf, std::uint32_t len) noexcept
+{
+  return ep_write_ (buf, len, false);
+}
 
 } // namespace usb_dwc2
 
 // ---------------------------------------------------------------------------
 // The strong external-IRQ hook. Lives in this translation unit so only the
-// tests that link the driver get it; the weak default stays a no-op.
+// tests that link the driver get it; the weak default stays a no-op. Not on
+// the BCM2711: there the application's handler calls usb_dwc2::isr () for
+// bcm::INTID_USB, beside its own sources.
 // ---------------------------------------------------------------------------
+#if !defined(SOC_BCM2711)
 extern "C" void
 port_external_irq_handler (std::uint32_t source)
 {
@@ -1291,3 +1331,4 @@ port_external_irq_handler (std::uint32_t source)
     }
   usb_dwc2::isr ();
 }
+#endif

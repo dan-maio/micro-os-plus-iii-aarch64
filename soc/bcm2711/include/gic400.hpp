@@ -143,6 +143,15 @@ inline void init_this_core() noexcept {
     isb();
 }
 
+// A shared peripheral interrupt (INTID 32 and above): its priority set and
+// the line enabled. It goes to core 0, as init_distributor() routes them all.
+inline void enable_spi(unsigned intid) noexcept {
+    using namespace bcm;
+    detail::set_priority(intid, PRIORITY);
+    mmio_write(GICD_ISENABLER0 + (intid / 32u) * 4u, 1u << (intid % 32u));
+    dsb();
+}
+
 // Acknowledge the highest-priority pending interrupt; returns the raw IAR
 // value (INTID in [9:0], source core of an SGI in [12:10]).
 inline std::uint32_t acknowledge() noexcept {

@@ -207,6 +207,9 @@ void set_configured_callback (configured_callback_t cb, void* arg) noexcept;
 /// Blocking, service-thread-only. Returns bytes moved, or a negative error.
 int ep_read  (void* buf, std::uint32_t len) noexcept;
 int ep_write (const void* buf, std::uint32_t len) noexcept;
+/// As ep_write (), without the zero-length packet after a multiple of the
+/// packet size: for a stream the host reads as one long transfer.
+int ep_write_stream (const void* buf, std::uint32_t len) noexcept;
 
 /// Bring-up instrumentation. Cheap counters updated by the ISR and handlers,
 /// read by the test's monitor thread while the device is not yet configured.

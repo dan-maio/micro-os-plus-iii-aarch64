@@ -74,6 +74,11 @@ inline constexpr std::uint32_t WDOG     = PM_BASE + 0x24u;
 inline constexpr std::uint32_t PASSWORD = 0x5A000000u;
 }
 
+// The DWC2 USB OTG core behind the USB-C socket (device mode: the USB
+// gadget). Its interrupt is VideoCore IRQ 9, GIC SPI 64 + 9 = 73: INTID 105.
+inline constexpr std::uint32_t USB_BASE = PERIPH_BASE + 0x980000u;
+inline constexpr unsigned INTID_USB = 32u + 73u;
+
 // SD host controllers (SDHCI v3.0).
 inline constexpr std::uint32_t EMMC_BASE  = PERIPH_BASE + 0x300000u; // Arasan: WiFi SDIO on the Pi 4
 inline constexpr std::uint32_t EMMC2_BASE = PERIPH_BASE + 0x340000u; // the SD card slot
