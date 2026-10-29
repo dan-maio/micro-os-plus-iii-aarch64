@@ -45,6 +45,14 @@ make -C test/rpi4b/usb_big_test/host
 test/rpi4b/usb_big_test/host/output/usb_test_host --big <file>
 ```
 
+**`SEMI_PRINTS` must be 0** (the default, `test/CMakeLists.txt`). With 1,
+every console line of the `hwd` image is also a semihosting trap, which stops
+core 0 for a JTAG round trip (seconds on this probe): the USB device cannot
+answer the host meanwhile, and enumeration fails (`device descriptor read/64,
+error -71`, `device not accepting address, error -62`); the stream of traps
+can also lose the debug link. Check the build directory's cache
+(`grep SEMI_PRINTS CMakeCache.txt`) and reconfigure with `-DSEMI_PRINTS=0`.
+
 The host tool (`host/`) is the Luckfox Lyra's `usb_test_host`
 (`micro-os-plus-iii-aarch32/test/luckfox-lyra/smp_test6/host/`) with the
 VID:PID `1d6b:0104`. It reports `PASSED: all N bytes match` and the ack; the
@@ -64,7 +72,11 @@ board's verdict and the transfer's numbers are on its UART.
 
 ## Results
 
-PASS on the board (2026-10-29): `RESULT: PASS (the host's file echoed and
-stored on the SD card)`; on the PC the device enumerated as `1d6b:0104`
-("uOS++ bulk test gadget") and the host tool's echo matched. Under QEMU:
-SKIP.
+PASS on the board (2026-10-29), from both workspaces (the golden one and
+the PR one): `RESULT: PASS (the host's file echoed and stored on the SD
+card)`; on the PC the device enumerated as `1d6b:0104` ("uOS++ bulk test
+gadget") and the host tool's echo matched. Under QEMU: SKIP.
+
+The golden workspace's first two runs failed to enumerate: its build
+directory had been configured with `SEMI_PRINTS=1` (see *Running it*).
+Reconfigured with 0, the same image passed.
