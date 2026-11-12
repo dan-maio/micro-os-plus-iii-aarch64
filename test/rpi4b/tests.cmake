@@ -113,7 +113,50 @@ function (board_test_libs _app _out)
          aarch64-rpi4b-harness-suite PARENT_SCOPE)
   elseif (_app STREQUAL "usb_big_test")
     set (${_out} aarch64-rpi4b-usb PARENT_SCOPE)
+  elseif (_app STREQUAL "eth-net" OR _app STREQUAL "eth-tcp-server")
+    set (${_out} aarch64-rpi4b-eth PARENT_SCOPE)
   else ()
     set (${_out} "" PARENT_SCOPE)
   endif ()
 endfunction ()
+
+# -----------------------------------------------------------------------------
+# The Ethernet tests: eth-net (link, DHCP, ping, log on the SD card) and
+# eth-tcp-server (TCP echo server, received stream saved on the SD card).
+#
+# They bring the network stack with them, as the Mango Pi Wi-Fi tests do: the
+# GENET driver, the lwIP glue and the shared bring-up live under
+# test/boards/rpi4b/net (board support, not test code), and lwIP itself under
+# test/third_party/lwip. Both need the real controller and a cable; this
+# port builds a qemu image of every test, and theirs only reports SKIP.
+set (_eth_tests eth-net eth-tcp-server)
+# The SD card and FatFs (micro-os-plus::devices-sd).
+list (APPEND BOARD_TEST_NEED_DEVICES ${_eth_tests})
+
+# Nothing network-specific is in the repository: pass it at configure time,
+#   cmake ... -D ETH_TEST_STATIC_IP=192.168.1.74/24
+set (ETH_TEST_STATIC_IP "" CACHE STRING "eth tests: static a.b.c.d/len instead of DHCP")
+set (ETH_TEST_GATEWAY "" CACHE STRING "eth tests: gateway to ping (default: from DHCP)")
+set (ETH_TEST_PEER "" CACHE STRING "eth-net: optional second host to ping")
+set (ETH_TCP_WAIT_S "60" CACHE STRING "eth-tcp-server: seconds to wait for a client")
+
+set (_eth_net_dir "${UOS_BOARD_SRC_DIR}/net/src")
+set (_eth_lwip_dir "${CMAKE_CURRENT_LIST_DIR}/../third_party/lwip/src")
+
+if (NOT TARGET aarch64-rpi4b-eth)
+  file (GLOB _eth_sources CONFIGURE_DEPENDS
+        "${_eth_net_dir}/*.cpp"
+        "${_eth_lwip_dir}/core/*.c"
+        "${_eth_lwip_dir}/core/ipv4/*.c"
+        "${_eth_lwip_dir}/netif/*.c")
+  add_library (aarch64-rpi4b-eth INTERFACE)
+  target_sources (aarch64-rpi4b-eth INTERFACE ${_eth_sources})
+  target_include_directories (aarch64-rpi4b-eth INTERFACE
+                              "${_eth_net_dir}"
+                              "${_eth_lwip_dir}/include")
+  target_compile_definitions (aarch64-rpi4b-eth INTERFACE
+                              "ETH_TEST_STATIC_IP=\"${ETH_TEST_STATIC_IP}\""
+                              "ETH_TEST_GATEWAY=\"${ETH_TEST_GATEWAY}\""
+                              "ETH_TEST_PEER=\"${ETH_TEST_PEER}\""
+                              "ETH_TCP_WAIT_S=${ETH_TCP_WAIT_S}")
+endif ()
