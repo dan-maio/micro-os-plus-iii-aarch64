@@ -4,7 +4,7 @@
  *
  * The AArch64 sibling of ../../32b/include/semihosting.hpp. Two uses:
  *
- *   - QEMU runs (qemu.sh / run.sh build with SEMIHOST=1): the console arrives
+ *   - QEMU runs (the -qemu builds, SEMIHOST=1): the console arrives
  *     on the host through the semihosting channel, and SYS_EXIT ends the run
  *     as soon as the test prints its RESULT — no idling until `timeout` fires.
  *   - Hardware (J-Link + OpenOCD debug-in-RAM) runs, where the board has no
@@ -19,7 +19,7 @@
  * { reason, exit_status }, not a bare reason code.
  *
  * When the binary is NOT run under a semihosting-enabled debugger/emulator,
- * every HLT halts the core, so a SEMIHOST build is only for qemu.sh / hw runs.
+ * every HLT halts the core, so a SEMIHOST build is only for QEMU / hw runs.
  */
 #pragma once
 

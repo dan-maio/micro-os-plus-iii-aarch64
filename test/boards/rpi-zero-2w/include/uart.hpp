@@ -31,7 +31,7 @@
 #define PORT_BANNER_CPU   "BCM2837 (4x Cortex-A53, AArch64)"
 
 
-// SEMIHOST is defined by the qemu.sh / run.sh builds (and by a hardware
+// SEMIHOST is defined by the -qemu builds (and by a hardware
 // debug-in-RAM run). When set, every UART byte is ALSO emitted through the ARM
 // semihosting channel, so the console reaches the emulator/OpenOCD host, and
 // the tests can end the run with a semihosted SYS_EXIT (see hw_result.hpp).
