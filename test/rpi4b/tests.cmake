@@ -15,14 +15,15 @@ set (BOARD_TEST_NEED_DEVICES
      sd_test smp-mat-sdcard-test smp-num-test smp-pipeline-test
      smp-shapes-test usb_big_test)
 
-# The DWC2 USB device driver (drivers/src/usb_dwc2.cpp, its BCM2711 build:
+# The DWC2 USB device driver (micro-os-plus-iii-devices-bcm283x
+# drivers/aarch64/src/usb_dwc2.cpp, its BCM2711 build:
 # the core at USB_BASE, its interrupt INTID 105), for the one test that uses
 # the USB-C socket's gadget. Not in the board's device set: no other test
 # links it.
 if (NOT TARGET aarch64-rpi4b-usb)
   add_library (aarch64-rpi4b-usb INTERFACE)
   target_sources (aarch64-rpi4b-usb INTERFACE
-                  "${CMAKE_CURRENT_LIST_DIR}/../../drivers/src/usb_dwc2.cpp")
+                  "${UOS_DEVICES_BCM283X_DRIVERS}/src/usb_dwc2.cpp")
 endif ()
 
 # Per-test -D flags, carried over from the per-test Makefiles.
