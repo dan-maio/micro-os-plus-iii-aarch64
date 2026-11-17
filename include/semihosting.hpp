@@ -47,17 +47,30 @@ namespace semihosting
     asm volatile ("hlt #0xF000" : "+r" (x0) : "r" (x1) : "memory", "cc");
   }
 
-  // SYS_WRITE (0x05): write len bytes from buf to the console handle (1), so
-  // the buffer need not be NUL-terminated. x1 points to { handle, buf, len }.
+  // Write len bytes from buf (not NUL-terminated) to the debugger's console.
+  //
+  // Through SYS_WRITE0, in NUL-terminated chunks, not SYS_WRITE (0x05) on
+  // handle 1: a semihosting handle exists only once SYS_OPEN(":tt") has
+  // returned it, and nothing on this port opens one, so QEMU dropped every
+  // SYS_WRITE to handle 1 -- printf() and the trace output never reached the
+  // run log, only the SYS_WRITE0 lines did (puts(), the RESULT line).
+  // SYS_WRITE0 needs no handle, on QEMU and on OpenOCD alike.
   inline void
   write_buf (const char* buf, std::size_t len) noexcept
   {
-    volatile std::uint64_t block[3] = {
-      1, reinterpret_cast<std::uint64_t> (buf), len
-    };
-    register std::uint64_t x0 asm ("x0") = 0x05;
-    register volatile std::uint64_t* x1 asm ("x1") = block;
-    asm volatile ("hlt #0xF000" : "+r" (x0) : "r" (x1) : "memory", "cc");
+    char chunk[256];
+    while (len > 0)
+      {
+        std::size_t n = (len < sizeof (chunk) - 1) ? len : sizeof (chunk) - 1;
+        for (std::size_t i = 0; i < n; ++i)
+          {
+            chunk[i] = buf[i];
+          }
+        chunk[n] = '\0';
+        write_str (chunk);
+        buf += n;
+        len -= n;
+      }
   }
 
   // SYS_EXIT (0x18): stop the run and report a status to the host. On AArch64
