@@ -12,7 +12,7 @@
 # behind the VL805 host controller; the one USB device is the DWC2 behind the
 # USB-C socket, which only usb_big_test uses, below).
 set (BOARD_TEST_NEED_DEVICES
-     sd_test smp-mat-sdcard-test smp-num-test smp-pipeline-test
+     smp-num-test smp-pipeline-test
      smp-shapes-test usb_big_test)
 
 # The DWC2 USB device driver (micro-os-plus-iii-devices-bcm283x
