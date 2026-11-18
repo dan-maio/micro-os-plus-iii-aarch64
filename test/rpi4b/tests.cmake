@@ -7,11 +7,6 @@
 # state for itself.
 # -----------------------------------------------------------------------------
 
-# Tests that reach the SD card, and so link UOS_BOARD_DEVICES
-# (boards/rpi4b/board.cmake: the SD-only driver set -- the type-A ports sit
-# behind the VL805 host controller; the one USB device is the DWC2 behind the
-# USB-C socket, which only usb_big_test uses, below).
-set (BOARD_TEST_NEED_DEVICES "")
 # The board tests that use the SD card through µOS++ POSIX I/O and Chan FatFs
 # (the card as /dev/sd, mounted at /sd/ by uos_test_storage_start()).
 list (APPEND UOS_TESTS_STORAGE smp-shapes-test usb_big_test)
@@ -71,7 +66,7 @@ endfunction ()
 # test/third_party/lwip. Both need the real controller and a cable; this
 # port builds a qemu image of every test, and theirs only reports SKIP.
 set (_eth_tests eth-net eth-tcp-server)
-# The SD card and FatFs (micro-os-plus::devices-sd).
+# The SD card through µOS++ POSIX I/O and Chan FatFs, as above.
 list (APPEND UOS_TESTS_STORAGE ${_eth_tests})
 
 # Nothing network-specific is in the repository: pass it at configure time,

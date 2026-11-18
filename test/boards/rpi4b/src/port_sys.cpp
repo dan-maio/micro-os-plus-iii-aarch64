@@ -23,7 +23,7 @@
  * Implemented in pure assembly to prevent GCC's -ftree-loop-distribute-patterns
  * from optimizing tail byte-fills into recursive calls to memset(), which previously
  * caused infinite recursion stack overflows whenever n < 8 or n was not a multiple
- * of 8 (e.g. in message_queue::send, vsnprintf, and flatfs).
+ * of 8 (e.g. in message_queue::send and vsnprintf).
  *
  * It uses aligned GPR stores (no DC ZVA, no SIMD/NEON) and is safe before and after
  * the MMU is enabled.
