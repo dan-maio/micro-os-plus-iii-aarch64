@@ -38,10 +38,11 @@
  *
  * Output: one logger thread on core 0 owns the UART and the SD card; every
  * other thread sends it lines through a message queue. It prints each line
- * on the UART and appends it to tests/shapes.log on the card's existing
- * FAT32 partition (never formatted). At the end the file is read back, its
- * size and CRC32 compared with what was written. (The QEMU image has no SD
- * card: there the lines go to the UART only and the read-back is skipped.)
+ * on the UART and appends it to /sd/tests/shapes.log, through µOS++ POSIX
+ * I/O, on the card's FAT volume (the posix-io block device /dev/sd with Chan
+ * FatFs, mounted by uos_test_storage_start(); the boot card is never
+ * formatted, the QEMU card is an MBR + FAT32 image). At the end the file is
+ * read back, its size and CRC32 compared with what was written.
  *
  * PASS when no check failed, every created shape was freed, the heap is
  * back to its starting level and the SD log reads back intact. Only the
@@ -54,10 +55,13 @@
 #include <smp.hpp>
 #include <hw_result.hpp>
 #include <test-console.hpp>
-#include <sd.hpp>
-#if defined(HW_BUILD)
-#include <fatfs_hw.hpp>
-#endif
+#include <cmsis-plus/posix-io/file-system.h>
+#include <cmsis-plus/posix-io/io.h>
+#include <cmsis-plus/posix/sys/statvfs.h>
+#include <uos-test-storage.h>
+
+#include <fcntl.h>
+#include <sys/stat.h>
 
 // Secondary-core idle stacks, the idle body and smp_install_boot_threads()
 // are identical in every SMP test; see this board's src/test-smp-boot.cpp.
@@ -419,7 +423,7 @@ static constexpr unsigned round_ms = 1500;
 static constexpr unsigned n_workers = OS_NCPU * 2;
 static constexpr unsigned max_owned = 16;
 static constexpr std::size_t thread_stack_bytes = 32 * 1024;
-static const char* const log_file = "shapes.log";
+static const char* const log_file = "/sd/tests/shapes.log";
 
 // ---- The logger: core 0 owns the UART and the SD card ----------------------
 
@@ -539,8 +543,14 @@ sd_flush (void)
 {
   if (g_sd_len == 0)
     return;
-#if defined(HW_BUILD)
-  if (fatfshw::append_file (log_file, g_sd_buf, static_cast<std::uint32_t> (g_sd_len)))
+  os::posix::io* f = os::posix::open (log_file, O_WRONLY | O_CREAT | O_APPEND);
+  bool ok = (f != nullptr);
+  if (ok)
+    {
+      ok = (f->write (g_sd_buf, g_sd_len) == static_cast<ssize_t> (g_sd_len));
+      ok = (f->close () == 0) && ok;
+    }
+  if (ok)
     {
       g_sd_bytes += g_sd_len;
       g_sd_crc = crc32_update (g_sd_crc, g_sd_buf, g_sd_len);
@@ -549,7 +559,6 @@ sd_flush (void)
     {
       ++g_sd_errors;
     }
-#endif
   g_sd_len = 0;
 }
 
@@ -1098,8 +1107,6 @@ free_all (void)
 
 // ---- The SD card -------------------------------------------------------------
 
-sd::SdCard g_card;
-
 [[noreturn]] static void
 fatal (const char* msg)
 {
@@ -1112,20 +1119,20 @@ fatal (const char* msg)
 static void
 sd_prepare (void)
 {
-#if defined(HW_BUILD)
-  console ("Initialising SD card...\n");
-  if (!g_card.init ())
-    fatal ("SD card init failed");
-  fatfshw::bind_card (g_card);
-  if (!fatfshw::mount_volume ())
-    fatal ("FAT32 mount failed");
-  if (!fatfshw::ensure_tests_dir ())
-    fatal ("mkdir tests failed");
-  fatfshw::remove_file (log_file);
-  console ("  FAT32 /tests ready, logging to tests/%s\n", log_file);
-#else
-  console ("No SD card in this image: the log goes to the UART only.\n");
-#endif
+  // /dev/sd's first FAT partition mounted at /sd/, /sd/tests/ created.
+  uos_test_storage_start ();
+  struct statvfs vfs;
+  if (os::posix::statvfs ("/sd/", &vfs) != 0)
+    fatal ("no FAT volume mounted at /sd/");
+  os::posix::unlink (log_file);
+  // Create the (empty) log now. posix-io frees a closed file's object at the
+  // next open, so from the first close on one such object is always held;
+  // creating it here, before the heap is measured, keeps the heap-level
+  // checks about the shapes only.
+  os::posix::io* f = os::posix::open (log_file, O_WRONLY | O_CREAT | O_TRUNC);
+  if (f == nullptr || f->close () != 0)
+    fatal ("cannot create the log on the card");
+  console ("  FAT volume at /sd/, logging to %s\n", log_file);
 }
 
 // The log on the card read back, its size and CRC compared.
@@ -1133,21 +1140,27 @@ static bool
 sd_verify (std::uint32_t* on_card)
 {
   *on_card = 0;
-#if defined(HW_BUILD)
   if (g_sd_errors != 0)
     return false;
-  if (!fatfshw::file_size (log_file, *on_card) || *on_card != g_sd_bytes)
+  struct stat st;
+  if (os::posix::stat (log_file, &st) != 0)
+    return false;
+  *on_card = static_cast<std::uint32_t> (st.st_size);
+  if (*on_card != g_sd_bytes)
     return false;
   auto* buf = new char[g_sd_bytes];
   if (buf == nullptr)
     return false;
-  const bool ok = fatfshw::load_file (log_file, buf, static_cast<std::uint32_t> (g_sd_bytes))
-                  && crc32_update (0, buf, g_sd_bytes) == g_sd_crc;
+  os::posix::io* f = os::posix::open (log_file, O_RDONLY);
+  bool ok = (f != nullptr);
+  if (ok)
+    {
+      ok = (f->read (buf, g_sd_bytes) == static_cast<ssize_t> (g_sd_bytes));
+      f->close ();
+    }
+  ok = ok && crc32_update (0, buf, g_sd_bytes) == g_sd_crc;
   delete[] buf;
   return ok;
-#else
-  return true;
-#endif
 }
 
 // ---- Start-up (as every rpi4b test) ----------------------------------------
@@ -1246,22 +1259,15 @@ os_main (int, char*[])
   log_sync (log_op::flush);
   std::uint32_t on_card = 0;
   const bool sd_ok = sd_verify (&on_card);
-#if defined(HW_BUILD)
-  say ("SD log tests/%s: %u B written, %lu B on the card, %lu write errors, read-back %s\n",
+  say ("SD log %s: %u B written, %lu B on the card, %lu write errors, read-back %s\n",
        log_file, static_cast<unsigned> (g_sd_bytes), static_cast<unsigned long> (on_card),
        static_cast<unsigned long> (g_sd_errors), sd_ok ? "ok" : "BAD");
-#endif
 
   const std::uint32_t errors = g_errors.load ();
   const bool pass = errors == 0 && sd_ok;
   if (pass)
-    say ("RESULT: PASS (40 shapes built and checked, %u stress rounds, %s)\n", rounds,
-#if defined(HW_BUILD)
-         "SD log verified"
-#else
-         "no SD card in this image"
-#endif
-    );
+    say ("RESULT: PASS (40 shapes built and checked, %u stress rounds, SD log verified)\n",
+         rounds);
   else
     say ("RESULT: FAIL (%lu failed checks, SD log %s)\n", static_cast<unsigned long> (errors),
          sd_ok ? "ok" : "bad");

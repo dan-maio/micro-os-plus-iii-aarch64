@@ -18,8 +18,10 @@
  *   - the bytes received straight into the blocks of a ring (16 × 32 KiB),
  *     each full block handed to the card's owner without waiting, so the bus
  *     is never left waiting for the card;
- *   - the card's owner, a writer thread: tests/usbfile.bin on the existing
- *     FAT32 boot partition (never formatted);
+ *   - the card's owner, a writer thread: /sd/tests/usbfile.bin, through µOS++
+ *     POSIX I/O, on the boot card's FAT volume (the posix-io block device
+ *     /dev/sd with Chan FatFs, mounted by uos_test_storage_start(); never
+ *     formatted);
  *   - at the end the file read back: its size and CRC-32 must be those
  *     received.
  *
@@ -34,12 +36,18 @@
 #include <uart.hpp>
 #include <exception_handler.hpp>
 #include <bcm2711.hpp>
-#include <sd.hpp>
-#include <fatfs_hw.hpp>
+#include <cmsis-plus/posix-io/file-system.h>
+#include <cmsis-plus/posix-io/io.h>
+#include <cmsis-plus/posix/sys/statvfs.h>
+#include <uos-test-storage.h>
 #include <usb_dwc2.hpp>
 #include <hw_result.hpp>
 
 #include "test-console.hpp"
+
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <cstdint>
 #include <cstdlib>
@@ -58,7 +66,28 @@ port_external_irq_handler (std::uint32_t intid)
 
 namespace
 {
-  constexpr const char* usb_leaf = "usbfile.bin";
+  constexpr const char* usb_leaf = "/sd/tests/usbfile.bin";
+
+  // The file on the card, through posix-io.
+  bool
+  file_append (const void* data, std::uint32_t len)
+  {
+    os::posix::io* f = os::posix::open (usb_leaf, O_WRONLY | O_CREAT | O_APPEND);
+    if (f == nullptr)
+      return false;
+    const bool ok = f->write (data, len) == static_cast<ssize_t> (len);
+    return (f->close () == 0) && ok;
+  }
+
+  bool
+  file_size (std::uint32_t& size)
+  {
+    struct stat st;
+    if (os::posix::stat (usb_leaf, &st) != 0)
+      return false;
+    size = static_cast<std::uint32_t> (st.st_size);
+    return true;
+  }
   constexpr unsigned usb_wait_s = 100;
 
   constexpr thread::priority_t prio_usb = thread::priority::high;
@@ -138,7 +167,7 @@ namespace
           if (r.len != 0)
             {
               const std::uint32_t t0 = now_us ();
-              if (!fatfshw::append_file (usb_leaf, r.data, r.len))
+              if (!file_append (r.data, r.len))
                 ++s_errors;
               const std::uint32_t dt = now_us () - t0;
               if (dt > s_max_write_us)
@@ -350,19 +379,24 @@ namespace
   bool
   file_crc (std::uint32_t& size, std::uint32_t& crc)
   {
-    if (!fatfshw::file_size (usb_leaf, size))
+    if (!file_size (size))
       return false;
     crc = 0;
     static std::uint8_t buf[card::block_bytes];
-    for (std::uint32_t off = 0; off < size;)
+    os::posix::io* f = os::posix::open (usb_leaf, O_RDONLY);
+    if (f == nullptr)
+      return false;
+    bool ok = true;
+    for (std::uint32_t off = 0; ok && off < size;)
       {
         const std::uint32_t n = size - off < sizeof (buf) ? size - off : sizeof (buf);
-        if (!fatfshw::load_file_at (usb_leaf, off, buf, n))
-          return false;
-        crc = crc32 (crc, buf, n);
+        ok = f->read (buf, n) == static_cast<ssize_t> (n);
+        if (ok)
+          crc = crc32 (crc, buf, n);
         off += n;
       }
-    return true;
+    f->close ();
+    return ok;
   }
 } // namespace
 
@@ -386,19 +420,18 @@ os_main (int, char*[])
 #endif
 
   // ---- The card ------------------------------------------------------------
-  static sd::SdCard sdcard;
-  if (!sdcard.init ())
+  // /dev/sd's first FAT partition mounted at /sd/, /sd/tests/ created.
+  uos_test_storage_start ();
+  struct statvfs vfs;
+  if (os::posix::statvfs ("/sd/", &vfs) != 0)
     {
-      console ("  SD init FAILED: %s\n", sdcard.last_error ());
-      check (false, "the SD card is ready");
+      check (false, "the FAT volume is mounted at /sd/");
       finish ("");
     }
-  fatfshw::bind_card (sdcard);
-  check (fatfshw::mount_volume (), "the FAT32 volume is mounted");
-  check (fatfshw::ensure_tests_dir (), "tests/ is there");
   // Created empty: the blocks are appended (creating it takes time the bus
   // does not have).
-  check (fatfshw::store_file (usb_leaf, "", 0), "tests/usbfile.bin created empty");
+  os::posix::io* f = os::posix::open (usb_leaf, O_WRONLY | O_CREAT | O_TRUNC);
+  check (f != nullptr && f->close () == 0, "/sd/tests/usbfile.bin created empty");
 
   thread::attributes wa = attributes_for (prio_card, card::s_stack, sizeof (card::s_stack));
   static thread writer{ "card", card::writer, nullptr, wa };
