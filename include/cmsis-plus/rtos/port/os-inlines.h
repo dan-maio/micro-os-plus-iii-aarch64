@@ -220,6 +220,20 @@ namespace os
         inline bool __attribute__ ((always_inline))
         in_handler_mode (void)
         {
+          // The interrupt handler runs with IRQs masked and never unmasks
+          // them, so with IRQs unmasked this is a thread. And only then can
+          // the reads below be split by a preemption: a thread that read its
+          // core number, then moved to another core, would read the flag of
+          // the core it left, set if that core is in its handler right then
+          // (seen on the Pi 4 B: "!interrupts::in_handler_mode ()" failing
+          // in kernel_locked() for a thread, smp-list-storage-test). With
+          // IRQs masked the thread stays where it is.
+          uint64_t daif;
+          __asm__ volatile("mrs %0, daif" : "=r"(daif));
+          if ((daif & (1ULL << 7)) == 0)
+            {
+              return false;
+            }
           const unsigned cpu = scheduler::port_cpu_id_inline ();
           return (cpu < OS_NCPU) && _in_isr[cpu];
         }
